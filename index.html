@@ -1,0 +1,3119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre Channel Design System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary Palette */
+            --ink-black: #0a0a0a;
+            --deep-black: #141414;
+            --warm-black: #1a1918;
+            --charcoal: #2a2a2a;
+            
+            /* Accent */
+            --brass: #b8976a;
+            --brass-light: #d4b896;
+            --brass-dark: #8a7048;
+            --brass-muted: #9a8a6a;
+            
+            /* Neutrals */
+            --cream: #f5f2eb;
+            --warm-cream: #ebe6db;
+            --stone: #d8d6d0;
+            --mist: #e8e6e2;
+            
+            /* Optional Accents */
+            --forest: #1e2d24;
+            --forest-light: #2d4235;
+            --burgundy: #4a2c2a;
+            
+            /* Semantic */
+            --text-primary: var(--ink-black);
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+            --text-light: var(--cream);
+            --text-light-muted: rgba(245, 242, 235, 0.7);
+            
+            /* Spacing Scale (8px base) */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            --space-10: 128px;
+            
+            /* Typography Scale */
+            --text-xs: 11px;
+            --text-sm: 13px;
+            --text-base: 16px;
+            --text-lg: 18px;
+            --text-xl: 20px;
+            --text-2xl: 24px;
+            --text-3xl: 32px;
+            --text-4xl: 40px;
+            --text-5xl: 48px;
+            --text-6xl: 64px;
+            --text-7xl: 80px;
+            
+            /* Line Heights */
+            --leading-tight: 1.1;
+            --leading-snug: 1.25;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.7;
+            
+            /* Letter Spacing */
+            --tracking-tight: -0.02em;
+            --tracking-normal: 0;
+            --tracking-wide: 0.05em;
+            --tracking-wider: 0.1em;
+            --tracking-widest: 0.2em;
+            
+            /* Borders & Radius */
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            --radius-xl: 12px;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
+            --shadow-xl: 0 16px 60px rgba(0, 0, 0, 0.2);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 400ms ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: var(--text-base);
+            line-height: var(--leading-normal);
+            color: var(--text-primary);
+            background: var(--cream);
+        }
+
+        /* ========================================
+           NAVIGATION
+        ======================================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--ink-black);
+            padding: var(--space-7);
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 1px solid rgba(184, 151, 106, 0.2);
+        }
+
+        .nav-logo svg {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--cream);
+            letter-spacing: var(--tracking-wide);
+        }
+
+        .nav-logo-sub {
+            font-size: var(--text-xs);
+            color: var(--brass);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-widest);
+            margin-top: 2px;
+        }
+
+        .nav-section {
+            margin-bottom: var(--space-6);
+        }
+
+        .nav-section-title {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--brass);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-widest);
+            margin-bottom: var(--space-3);
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: var(--space-2) 0;
+            color: var(--text-light-muted);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: color var(--transition-fast);
+        }
+
+        .nav-links a:hover {
+            color: var(--cream);
+        }
+
+        /* ========================================
+           MAIN CONTENT
+        ======================================== */
+        .main {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        /* ========================================
+           HEADER
+        ======================================== */
+        .header {
+            background: var(--ink-black);
+            color: var(--cream);
+            padding: var(--space-10) var(--space-9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 20% 30%, rgba(184, 151, 106, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .header-label {
+            font-size: var(--text-xs);
+            letter-spacing: var(--tracking-widest);
+            text-transform: uppercase;
+            color: var(--brass);
+            margin-bottom: var(--space-5);
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-7xl);
+            font-weight: 300;
+            line-height: var(--leading-tight);
+            letter-spacing: var(--tracking-tight);
+            margin-bottom: var(--space-5);
+        }
+
+        .header-sub {
+            font-size: var(--text-lg);
+            color: var(--text-light-muted);
+            font-weight: 300;
+            max-width: 600px;
+            line-height: var(--leading-relaxed);
+        }
+
+        /* ========================================
+           SECTIONS
+        ======================================== */
+        .section {
+            padding: var(--space-9) var(--space-9);
+            border-bottom: 1px solid var(--stone);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: var(--tracking-widest);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-7);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--stone);
+        }
+
+        .section-intro {
+            max-width: 700px;
+            margin-bottom: var(--space-8);
+        }
+
+        .section-intro h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-4xl);
+            font-weight: 400;
+            margin-bottom: var(--space-4);
+            color: var(--text-primary);
+        }
+
+        .section-intro p {
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: var(--leading-relaxed);
+        }
+
+        /* ========================================
+           COLOUR PALETTE
+        ======================================== */
+        .colour-group {
+            margin-bottom: var(--space-8);
+        }
+
+        .colour-group-title {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-5);
+            color: var(--text-secondary);
+        }
+
+        .colour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: var(--space-5);
+        }
+
+        .colour-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .colour-swatch {
+            height: 100px;
+            position: relative;
+        }
+
+        .colour-swatch.ink-black { background: var(--ink-black); }
+        .colour-swatch.deep-black { background: var(--deep-black); }
+        .colour-swatch.warm-black { background: var(--warm-black); }
+        .colour-swatch.charcoal { background: var(--charcoal); }
+        .colour-swatch.brass { background: linear-gradient(135deg, var(--brass-dark) 0%, var(--brass) 50%, var(--brass-light) 100%); }
+        .colour-swatch.brass-light { background: var(--brass-light); }
+        .colour-swatch.brass-dark { background: var(--brass-dark); }
+        .colour-swatch.brass-muted { background: var(--brass-muted); }
+        .colour-swatch.cream { background: var(--cream); border: 1px solid var(--stone); }
+        .colour-swatch.warm-cream { background: var(--warm-cream); }
+        .colour-swatch.stone { background: var(--stone); }
+        .colour-swatch.mist { background: var(--mist); }
+        .colour-swatch.forest { background: var(--forest); }
+        .colour-swatch.forest-light { background: var(--forest-light); }
+        .colour-swatch.burgundy { background: var(--burgundy); }
+
+        .colour-info {
+            padding: var(--space-4);
+        }
+
+        .colour-name {
+            font-weight: 500;
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-1);
+        }
+
+        .colour-hex {
+            font-family: 'DM Sans', monospace;
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            margin-bottom: var(--space-2);
+        }
+
+        .colour-usage {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            line-height: var(--leading-normal);
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+        ======================================== */
+        .type-specimen {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .type-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: var(--space-6);
+            padding: var(--space-6) 0;
+            border-bottom: 1px solid var(--mist);
+            align-items: baseline;
+        }
+
+        .type-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .type-row:first-child {
+            padding-top: 0;
+        }
+
+        .type-meta {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .type-meta-name {
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-1);
+        }
+
+        .type-display-1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-7xl);
+            font-weight: 300;
+            line-height: var(--leading-tight);
+        }
+
+        .type-display-2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-6xl);
+            font-weight: 300;
+            line-height: var(--leading-tight);
+        }
+
+        .type-display-3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-5xl);
+            font-weight: 400;
+            line-height: var(--leading-tight);
+        }
+
+        .type-h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-4xl);
+            font-weight: 400;
+            line-height: var(--leading-snug);
+        }
+
+        .type-h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-3xl);
+            font-weight: 500;
+            line-height: var(--leading-snug);
+        }
+
+        .type-h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-2xl);
+            font-weight: 500;
+            line-height: var(--leading-snug);
+        }
+
+        .type-h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-lg);
+            font-weight: 600;
+            line-height: var(--leading-snug);
+        }
+
+        .type-body-lg {
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-lg);
+            font-weight: 300;
+            line-height: var(--leading-relaxed);
+        }
+
+        .type-body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-base);
+            font-weight: 400;
+            line-height: var(--leading-relaxed);
+        }
+
+        .type-body-sm {
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-sm);
+            font-weight: 400;
+            line-height: var(--leading-normal);
+        }
+
+        .type-caption {
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-xs);
+            font-weight: 400;
+            letter-spacing: var(--tracking-widest);
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .type-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            font-style: italic;
+            line-height: var(--leading-relaxed);
+            color: var(--text-secondary);
+        }
+
+        /* ========================================
+           SPACING
+        ======================================== */
+        .spacing-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-5);
+            margin-bottom: var(--space-6);
+        }
+
+        .spacing-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .spacing-block {
+            background: var(--brass);
+            height: 40px;
+            border-radius: var(--radius-sm);
+        }
+
+        .spacing-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        /* ========================================
+           COMPONENTS
+        ======================================== */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .component-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .component-card-dark {
+            background: var(--ink-black);
+            color: var(--cream);
+        }
+
+        .component-title {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: var(--tracking-widest);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-5);
+        }
+
+        .component-card-dark .component-title {
+            color: var(--brass);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-4) var(--space-6);
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .btn-primary {
+            background: var(--ink-black);
+            color: var(--cream);
+        }
+
+        .btn-primary:hover {
+            background: var(--charcoal);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ink-black);
+            border: 1px solid var(--ink-black);
+        }
+
+        .btn-secondary:hover {
+            background: var(--ink-black);
+            color: var(--cream);
+        }
+
+        .btn-brass {
+            background: var(--brass);
+            color: var(--ink-black);
+        }
+
+        .btn-brass:hover {
+            background: var(--brass-light);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid var(--brass);
+        }
+
+        .btn-ghost:hover {
+            background: var(--brass);
+            color: var(--ink-black);
+        }
+
+        .btn-sm {
+            padding: var(--space-2) var(--space-4);
+            font-size: var(--text-xs);
+        }
+
+        .btn-lg {
+            padding: var(--space-5) var(--space-7);
+            font-size: var(--text-base);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: var(--space-5);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--text-xs);
+            font-weight: 500;
+            letter-spacing: var(--tracking-wider);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-2);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--space-4);
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-base);
+            border: 1px solid var(--stone);
+            border-radius: var(--radius-sm);
+            background: white;
+            transition: border-color var(--transition-fast);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--brass);
+        }
+
+        .form-input-dark {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(184, 151, 106, 0.3);
+            color: var(--cream);
+        }
+
+        .form-input-dark:focus {
+            border-color: var(--brass);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Dividers */
+        .divider {
+            height: 1px;
+            background: var(--stone);
+            margin: var(--space-6) 0;
+        }
+
+        .divider-brass {
+            background: linear-gradient(90deg, var(--brass), transparent);
+            height: 2px;
+        }
+
+        .divider-dark {
+            background: rgba(184, 151, 106, 0.2);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-dark {
+            background: var(--ink-black);
+            color: var(--cream);
+        }
+
+        .card-elevated {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-bordered {
+            border: 1px solid var(--stone);
+            box-shadow: none;
+        }
+
+        /* Quote Block */
+        .quote-block {
+            padding: var(--space-6);
+            border-left: 3px solid var(--brass);
+            background: rgba(184, 151, 106, 0.05);
+        }
+
+        .quote-block p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-xl);
+            font-style: italic;
+            line-height: var(--leading-relaxed);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-3);
+        }
+
+        .quote-block cite {
+            font-family: 'DM Sans', sans-serif;
+            font-size: var(--text-sm);
+            font-style: normal;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           LOGO MARKS
+        ======================================== */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-5);
+        }
+
+        .logo-card {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+        }
+
+        .logo-card svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: var(--space-4);
+        }
+
+        .logo-card-label {
+            font-size: var(--text-xs);
+            letter-spacing: var(--tracking-widest);
+            text-transform: uppercase;
+        }
+
+        .logo-card-dark {
+            background: var(--ink-black);
+        }
+
+        .logo-card-dark .logo-card-label {
+            color: var(--brass);
+        }
+
+        .logo-card-cream {
+            background: var(--cream);
+            border: 1px solid var(--stone);
+        }
+
+        .logo-card-cream .logo-card-label {
+            color: var(--text-muted);
+        }
+
+        .logo-card-forest {
+            background: var(--forest);
+        }
+
+        .logo-card-forest .logo-card-label {
+            color: var(--brass);
+        }
+
+        .logo-card-brass {
+            background: var(--brass);
+        }
+
+        .logo-card-brass .logo-card-label {
+            color: var(--ink-black);
+        }
+
+        /* Clear Space */
+        .clear-space-demo {
+            display: flex;
+            justify-content: center;
+            padding: var(--space-8);
+            background: white;
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-6);
+        }
+
+        .clear-space-container {
+            position: relative;
+            padding: var(--space-8);
+            border: 1px dashed var(--brass);
+        }
+
+        .clear-space-mark {
+            position: absolute;
+            font-size: var(--text-xs);
+            color: var(--brass);
+        }
+
+        .clear-space-mark.top {
+            top: var(--space-2);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .clear-space-mark.bottom {
+            bottom: var(--space-2);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .clear-space-mark.left {
+            left: var(--space-2);
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+
+        .clear-space-mark.right {
+            right: var(--space-2);
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        /* ========================================
+           APPLICATION EXAMPLES
+        ======================================== */
+        .app-section {
+            margin-bottom: var(--space-8);
+        }
+
+        .app-section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-2xl);
+            font-weight: 500;
+            margin-bottom: var(--space-5);
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-6);
+        }
+
+        /* ========================================
+           WEBSITE - DARK CONCEPT
+        ======================================== */
+        .website-preview {
+            background: var(--ink-black);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .website-browser-bar {
+            background: var(--deep-black);
+            padding: var(--space-3) var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            border-bottom: 1px solid var(--warm-black);
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--charcoal);
+        }
+
+        .browser-dot.red { background: #ff5f57; }
+        .browser-dot.yellow { background: #febc2e; }
+        .browser-dot.green { background: #28c840; }
+
+        /* Hero Example - Dark */
+        .hero-example-dark {
+            padding: var(--space-8);
+            color: var(--cream);
+            position: relative;
+            min-height: 350px;
+        }
+
+        .hero-example-dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(ellipse at 80% 30%, rgba(184, 151, 106, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-example-content {
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+        }
+
+        .hero-example-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--brass);
+            margin-bottom: var(--space-5);
+        }
+
+        .hero-example-dark h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-example-dark h2 em {
+            font-style: italic;
+            color: var(--brass-light);
+        }
+
+        .hero-example-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-lg);
+            font-weight: 300;
+            font-style: italic;
+            color: #888;
+            margin-bottom: var(--space-6);
+        }
+
+        .hero-cta-example {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--brass);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .hero-cta-example span {
+            display: inline-block;
+            width: 40px;
+            height: 1px;
+            background: var(--brass);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator-example {
+            position: absolute;
+            bottom: var(--space-6);
+            left: var(--space-6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .scroll-indicator-example span {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666;
+            writing-mode: vertical-rl;
+        }
+
+        .scroll-line-example {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--brass) 0%, transparent 100%);
+        }
+
+        /* Navigation Example - Dark */
+        .nav-example-dark {
+            background: transparent;
+            padding: var(--space-4) var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--warm-black);
+        }
+
+        .nav-example-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .nav-example-logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-example-links {
+            display: flex;
+            gap: var(--space-6);
+        }
+
+        .nav-example-links a {
+            font-size: var(--text-sm);
+            color: var(--cream);
+            text-decoration: none;
+            opacity: 0.7;
+        }
+
+        .nav-example-cta {
+            font-size: var(--text-sm);
+            color: var(--brass);
+            text-decoration: none;
+        }
+
+        /* Problems Section Example */
+        .problems-example {
+            background: var(--deep-black);
+            padding: var(--space-7);
+            border-top: 1px solid var(--warm-black);
+        }
+
+        .problems-example-header {
+            margin-bottom: var(--space-6);
+        }
+
+        .problems-example-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--brass);
+            margin-bottom: var(--space-3);
+        }
+
+        .problems-example-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-xl);
+            font-weight: 300;
+            color: var(--cream);
+            max-width: 400px;
+        }
+
+        .problems-grid-example {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-5);
+        }
+
+        .problem-card-example {
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--warm-black);
+        }
+
+        .problem-card-example h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-base);
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: var(--space-2);
+        }
+
+        .problem-card-example p {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Credentials Example */
+        .credentials-example {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            padding: var(--space-6);
+            background: var(--deep-black);
+            border-top: 1px solid var(--warm-black);
+        }
+
+        .credential-example {
+            text-align: center;
+            padding: var(--space-4);
+            background: var(--ink-black);
+            border-radius: var(--radius-sm);
+        }
+
+        .credential-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            color: var(--brass);
+            line-height: 1;
+            margin-bottom: var(--space-1);
+        }
+
+        .credential-label {
+            font-size: 10px;
+            color: #666;
+        }
+
+        /* ========================================
+           STRATEGY CARDS
+        ======================================== */
+        .cards-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+
+        .cards-mockup {
+            position: relative;
+            padding: var(--space-6);
+        }
+
+        .card-box {
+            background: var(--ink-black);
+            width: 260px;
+            height: 180px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto var(--space-6);
+        }
+
+        .card-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .box-logo {
+            width: 56px;
+            height: 56px;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 200px;
+            height: 140px;
+            margin: 0 auto;
+        }
+
+        .strategy-card {
+            position: absolute;
+            width: 170px;
+            height: 105px;
+            background: var(--cream);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-4);
+        }
+
+        .strategy-card:nth-child(1) {
+            transform: rotate(-6deg);
+            left: 0;
+            bottom: 0;
+        }
+
+        .strategy-card:nth-child(2) {
+            transform: rotate(-2deg);
+            left: 10px;
+            bottom: 10px;
+        }
+
+        .strategy-card:nth-child(3) {
+            transform: rotate(2deg);
+            left: 20px;
+            bottom: 20px;
+        }
+
+        .strategy-card-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-sm);
+            font-weight: 400;
+            text-align: center;
+            color: var(--ink-black);
+            line-height: 1.4;
+        }
+
+        .cards-notes h4 {
+            font-size: var(--text-xs);
+            letter-spacing: var(--tracking-widest);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-4);
+        }
+
+        .cards-notes ul {
+            list-style: none;
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 2;
+        }
+
+        .cards-notes li::before {
+            content: "â€”";
+            margin-right: var(--space-3);
+            color: var(--brass);
+        }
+
+        /* Sample Cards Grid */
+        .sample-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+            margin-top: var(--space-6);
+        }
+
+        .sample-card {
+            background: var(--cream);
+            padding: var(--space-5) var(--space-4);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sample-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-base);
+            font-weight: 400;
+            text-align: center;
+            color: var(--ink-black);
+            line-height: 1.4;
+        }
+
+        /* ========================================
+           SOCIAL MEDIA
+        ======================================== */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+
+        /* LinkedIn Post */
+        .linkedin-post {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .linkedin-header {
+            padding: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            border-bottom: 1px solid var(--mist);
+        }
+
+        .linkedin-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--ink-black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .linkedin-avatar svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .linkedin-name {
+            font-weight: 600;
+            font-size: var(--text-sm);
+            color: var(--ink-black);
+        }
+
+        .linkedin-title {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .linkedin-image {
+            aspect-ratio: 1.91;
+            background: var(--ink-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .linkedin-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 30% 40%, rgba(184, 151, 106, 0.15) 0%, transparent 60%);
+        }
+
+        .linkedin-image-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: var(--space-6);
+        }
+
+        .linkedin-image-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1.3;
+            max-width: 280px;
+        }
+
+        .linkedin-body {
+            padding: var(--space-4);
+        }
+
+        .linkedin-body p {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Instagram Post */
+        .instagram-post {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .instagram-header {
+            padding: var(--space-3) var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .instagram-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--ink-black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .instagram-avatar svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .instagram-username {
+            font-weight: 600;
+            font-size: var(--text-sm);
+        }
+
+        .instagram-image {
+            aspect-ratio: 1;
+            background: var(--ink-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(184, 151, 106, 0.12) 0%, transparent 70%);
+        }
+
+        .instagram-image-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: var(--space-6);
+        }
+
+        .instagram-image-content svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: var(--space-4);
+        }
+
+        .instagram-image-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-lg);
+            font-style: italic;
+            color: var(--cream);
+            line-height: 1.5;
+            max-width: 220px;
+        }
+
+        /* LinkedIn Banner */
+        .linkedin-banner {
+            background: var(--ink-black);
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-6) var(--space-7);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .linkedin-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(184, 151, 106, 0.1) 0%, transparent 60%);
+        }
+
+        .linkedin-banner-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .linkedin-banner h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-xl);
+            font-weight: 300;
+            color: var(--cream);
+            margin-bottom: var(--space-2);
+        }
+
+        .linkedin-banner p {
+            font-size: var(--text-sm);
+            color: var(--brass);
+        }
+
+        .linkedin-banner svg {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========================================
+           EMAIL SIGNATURE
+        ======================================== */
+        .email-signature-preview {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            max-width: 500px;
+        }
+
+        .email-sig-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--brass);
+            margin-bottom: var(--space-4);
+        }
+
+        .email-sig-content {
+            display: flex;
+            gap: var(--space-5);
+        }
+
+        .email-sig-logo {
+            flex-shrink: 0;
+        }
+
+        .email-sig-logo svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .email-sig-info {
+            flex: 1;
+        }
+
+        .email-sig-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--ink-black);
+            margin-bottom: var(--space-1);
+        }
+
+        .email-sig-title {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            margin-bottom: var(--space-3);
+        }
+
+        .email-sig-details {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .email-sig-details a {
+            color: var(--brass);
+            text-decoration: none;
+        }
+
+        /* Alternative Signature - Minimal */
+        .email-signature-minimal {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            max-width: 400px;
+        }
+
+        .email-sig-minimal-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--ink-black);
+        }
+
+        .email-sig-minimal-title {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            margin-bottom: var(--space-2);
+        }
+
+        .email-sig-minimal-link {
+            font-size: var(--text-sm);
+            color: var(--brass);
+            text-decoration: none;
+        }
+
+        /* ========================================
+           BUSINESS CARD
+        ======================================== */
+        .business-card-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-5);
+        }
+
+        .business-card {
+            aspect-ratio: 1.75;
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .business-card-front {
+            background: var(--ink-black);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .business-card-front svg {
+            width: 60px;
+            height: 60px;
+        }
+
+        .business-card-back {
+            background: var(--cream);
+            justify-content: space-between;
+        }
+
+        .business-card-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--ink-black);
+        }
+
+        .business-card-title {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
+        }
+
+        .business-card-contact {
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ========================================
+           PRESENTATION SLIDES
+        ======================================== */
+        .slide-preview {
+            background: var(--charcoal);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .slide {
+            aspect-ratio: 16/9;
+            padding: var(--space-7);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-title {
+            background: var(--ink-black);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .slide-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(184, 151, 106, 0.1) 0%, transparent 70%);
+        }
+
+        .slide-title h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-3xl);
+            font-weight: 300;
+            color: var(--cream);
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-title .slide-subtitle {
+            font-size: var(--text-sm);
+            color: var(--brass);
+            margin-top: var(--space-3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-content {
+            background: var(--cream);
+        }
+
+        .slide-content-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-xl);
+            font-weight: 500;
+            margin-bottom: var(--space-5);
+            color: var(--ink-black);
+        }
+
+        .slide-content-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--space-4);
+            flex: 1;
+        }
+
+        .slide-content-item {
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-sm);
+            border-left: 2px solid var(--brass);
+        }
+
+        .slide-content-item h4 {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            color: var(--ink-black);
+        }
+
+        .slide-content-item p {
+            font-size: 10px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           DOCUMENT PREVIEW
+        ======================================== */
+        .document-preview {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .document-header {
+            background: var(--ink-black);
+            padding: var(--space-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .document-header svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .document-header-info {
+            text-align: right;
+            color: var(--cream);
+        }
+
+        .document-header-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-lg);
+            font-weight: 400;
+            margin-bottom: var(--space-1);
+        }
+
+        .document-header-info p {
+            font-size: var(--text-xs);
+            color: var(--text-light-muted);
+        }
+
+        .document-body {
+            padding: var(--space-6);
+        }
+
+        .document-section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-lg);
+            font-weight: 500;
+            margin-bottom: var(--space-3);
+            color: var(--ink-black);
+        }
+
+        .document-text {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-5);
+        }
+
+        .document-divider {
+            height: 1px;
+            background: linear-gradient(90deg, var(--brass), transparent);
+            margin: var(--space-5) 0;
+        }
+
+        /* ========================================
+           MERCHANDISE
+        ======================================== */
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-5);
+        }
+
+        .merch-item {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .merch-visual {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-4);
+        }
+
+        .merch-notebook {
+            width: 100px;
+            height: 130px;
+            background: var(--ink-black);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .merch-notebook::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: var(--brass);
+        }
+
+        .merch-notebook svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .merch-tote {
+            width: 120px;
+            height: 120px;
+            background: var(--cream);
+            border: 2px solid var(--stone);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .merch-tote::before,
+        .merch-tote::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            width: 25px;
+            height: 20px;
+            border: 2px solid var(--stone);
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+            background: var(--cream);
+        }
+
+        .merch-tote::before { left: 20px; }
+        .merch-tote::after { right: 20px; }
+
+        .merch-tote svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .merch-pen {
+            width: 120px;
+            height: 12px;
+            background: var(--ink-black);
+            border-radius: 6px;
+            position: relative;
+            transform: rotate(-30deg);
+        }
+
+        .merch-pen::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 2px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid var(--ink-black);
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+
+        .merch-pen::after {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 3px;
+            width: 30px;
+            height: 6px;
+            background: var(--brass);
+            border-radius: 3px;
+        }
+
+        .merch-coaster {
+            width: 100px;
+            height: 100px;
+            background: var(--ink-black);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .merch-coaster svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .merch-item h4 {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-2);
+        }
+
+        .merch-item p {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           GUIDELINES
+        ======================================== */
+        .guideline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-5);
+        }
+
+        .guideline-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .guideline-card.do {
+            border-top: 3px solid #28c840;
+        }
+
+        .guideline-card.dont {
+            border-top: 3px solid #ff5f57;
+        }
+
+        .guideline-label {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
+            margin-bottom: var(--space-4);
+        }
+
+        .guideline-card.do .guideline-label {
+            color: #28c840;
+        }
+
+        .guideline-card.dont .guideline-label {
+            color: #ff5f57;
+        }
+
+        .guideline-list {
+            list-style: none;
+        }
+
+        .guideline-list li {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            padding: var(--space-2) 0;
+            padding-left: var(--space-5);
+            position: relative;
+        }
+
+        .guideline-list li::before {
+            content: 'â€”';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        .footer {
+            background: var(--ink-black);
+            padding: var(--space-8) var(--space-9);
+            text-align: center;
+        }
+
+        .footer-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--brass);
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-info {
+            font-size: var(--text-xs);
+            color: var(--text-light-muted);
+            letter-spacing: var(--tracking-wide);
+        }
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+        @media (max-width: 1200px) {
+            .nav {
+                width: 240px;
+            }
+            .main {
+                margin-left: 240px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav {
+                display: none;
+            }
+            .main {
+                margin-left: 0;
+            }
+            .section {
+                padding: var(--space-7) var(--space-5);
+            }
+            .header {
+                padding: var(--space-8) var(--space-5);
+            }
+            .header h1 {
+                font-size: var(--text-5xl);
+            }
+            .type-row {
+                grid-template-columns: 1fr;
+                gap: var(--space-3);
+            }
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+            .business-card-preview {
+                grid-template-columns: 1fr;
+            }
+            .guideline-grid {
+                grid-template-columns: 1fr;
+            }
+            .cards-section {
+                grid-template-columns: 1fr;
+            }
+            .sample-cards {
+                grid-template-columns: 1fr;
+            }
+            .problems-grid-example {
+                grid-template-columns: 1fr;
+            }
+            .credentials-example {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+            </svg>
+            <div>
+                <div class="nav-logo-text">Centre Channel</div>
+                <div class="nav-logo-sub">Design System</div>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Foundations</div>
+            <ul class="nav-links">
+                <li><a href="#colours">Colour Palette</a></li>
+                <li><a href="#typography">Typography</a></li>
+                <li><a href="#spacing">Spacing & Grid</a></li>
+                <li><a href="#logo">Logo & Marks</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Components</div>
+            <ul class="nav-links">
+                <li><a href="#buttons">Buttons</a></li>
+                <li><a href="#forms">Form Elements</a></li>
+                <li><a href="#cards">Cards & Containers</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Applications</div>
+            <ul class="nav-links">
+                <li><a href="#website">Website</a></li>
+                <li><a href="#strategy-cards">Strategy Cards</a></li>
+                <li><a href="#social-media">Social Media</a></li>
+                <li><a href="#email-signature">Email Signature</a></li>
+                <li><a href="#presentations">Presentations</a></li>
+                <li><a href="#documents">Documents</a></li>
+                <li><a href="#business-cards">Business Cards</a></li>
+                <li><a href="#merchandise">Merchandise</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Guidelines</div>
+            <ul class="nav-links">
+                <li><a href="#dos-donts">Do's & Don'ts</a></li>
+                <li><a href="#voice">Voice & Tone</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-label">Brand Guidelines v1.0</div>
+                <h1>Centre Channel<br>Design System</h1>
+                <p class="header-sub">A comprehensive guide to the visual language of Centre Channel. Built on the principles of deliberate thought, careful consideration, and exclusive accessibility.</p>
+            </div>
+        </header>
+
+        <!-- Colours -->
+        <section class="section" id="colours">
+            <h2 class="section-title">Colour Palette</h2>
+            
+            <div class="section-intro">
+                <h2>Colour</h2>
+                <p>Our palette is built around the interplay of deep, confident blacks with warm brass accents. This combination conveys sophistication, authority, and the premium nature of our consultancy.</p>
+            </div>
+
+            <div class="colour-group">
+                <h3 class="colour-group-title">Primary â€” Blacks</h3>
+                <div class="colour-grid">
+                    <div class="colour-card">
+                        <div class="colour-swatch ink-black"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Ink Black</div>
+                            <div class="colour-hex">#0a0a0a</div>
+                            <div class="colour-usage">Primary backgrounds, hero sections, maximum contrast</div>
+                        </div>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch deep-black"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Deep Black</div>
+                            <div class="colour-hex">#141414</div>
+                            <div class="colour-usage">Secondary backgrounds, layered sections</div>
+                        </div>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch warm-black"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Warm Black</div>
+                            <div class="colour-hex">#1a1918</div>
+                            <div class="colour-usage">Borders, dividers on dark backgrounds</div>
+                        </div>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch charcoal"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Charcoal</div>
+                            <div class="colour-hex">#2a2a2a</div>
+                            <div class="colour-usage">Button hovers, tertiary backgrounds</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="colour-group">
+                <h3 class="colour-group-title">Accent â€” Brass</h3>
+                <div class="colour-grid">
+                    <div class="colour-card">
+                        <div class="colour-swatch brass"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Brass</div>
+                            <div class="colour-hex">#b8976a</div>
+                            <div class="colour-usage">Primary accent, foil effects, key highlights</div>
+                        </div>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch brass-light"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Brass Light</div>
+                            <div class="colour-hex">#d4b896</div>
+                            <div class="colour-usage">Hover states, italic emphasis text</div>
+                        </div>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch brass-dark"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Brass Dark</div>
+                            <div class="colour-hex">#8a7048</div>
+                            <div class="colour-usage">Gradient shadows, depth</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="colour-group">
+                <h3 class="colour-group-title">Neutrals â€” Lights</h3>
+                <div class="colour-grid">
+                    <div class="colour-card">
+                        <div class="colour-swatch cream"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Cream</div>
+                            <div class="colour-hex">#f5f2eb</div>
+                            <div class="colour-usage">Text on dark, light backgrounds, paper texture</div>
+                        </div>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch stone"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Stone</div>
+                            <div class="colour-hex">#d8d6d0</div>
+                            <div class="colour-usage">Borders, dividers on light backgrounds</div>
+                        </div>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch mist"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Mist</div>
+                            <div class="colour-hex">#e8e6e2</div>
+                            <div class="colour-usage">Alternate backgrounds, hover states</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="colour-group">
+                <h3 class="colour-group-title">Optional Accents</h3>
+                <div class="colour-grid">
+                    <div class="colour-card">
+                        <div class="colour-swatch forest"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Forest</div>
+                            <div class="colour-hex">#1e2d24</div>
+                            <div class="colour-usage">Alternative dark, Sessions events</div>
+                        </div>
+                    </div>
+                    <div class="colour-card">
+                        <div class="colour-swatch burgundy"></div>
+                        <div class="colour-info">
+                            <div class="colour-name">Burgundy</div>
+                            <div class="colour-hex">#4a2c2a</div>
+                            <div class="colour-usage">Special occasions, warmth</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="section" id="typography">
+            <h2 class="section-title">Typography</h2>
+
+            <div class="section-intro">
+                <h2>Type System</h2>
+                <p>Our typography pairs the elegant Cormorant Garamond for display and headlines with the clean, modern DM Sans for body text. This combination bridges traditional authority with contemporary clarity.</p>
+            </div>
+
+            <div class="type-specimen">
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-meta-name">Display 1</div>
+                        Cormorant Garamond Light, 80px
+                    </div>
+                    <div class="type-display-1">Sessions</div>
+                </div>
+
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-meta-name">Display 2</div>
+                        Cormorant Garamond Light, 64px
+                    </div>
+                    <div class="type-display-2">Deliberate Thought</div>
+                </div>
+
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-meta-name">Heading 1</div>
+                        Cormorant Garamond Regular, 40px
+                    </div>
+                    <div class="type-h1">Strategic clarity, not more opinions</div>
+                </div>
+
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-meta-name">Heading 2</div>
+                        Cormorant Garamond Medium, 32px
+                    </div>
+                    <div class="type-h2">The Centre Channel Method</div>
+                </div>
+
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-meta-name">Heading 3</div>
+                        Cormorant Garamond Medium, 24px
+                    </div>
+                    <div class="type-h3">Fixed rather than transformed</div>
+                </div>
+
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-meta-name">Body</div>
+                        DM Sans Regular, 16px
+                    </div>
+                    <div class="type-body">For people and brands looking for clarity and alignment, Centre Channel is a fresh take on digital consultancy. We bring focus to their most complex problems.</div>
+                </div>
+
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-meta-name">Caption</div>
+                        DM Sans Regular, 11px, uppercase
+                    </div>
+                    <div class="type-caption">Thursday 27 February Â· Spiritland Â· King's Cross</div>
+                </div>
+
+                <div class="type-row">
+                    <div class="type-meta">
+                        <div class="type-meta-name">Pull Quote</div>
+                        Cormorant Garamond Light Italic, 24px
+                    </div>
+                    <div class="type-quote">"The centre channel is the one that prioritises dialogue. It cuts through all the background noise to focus on what's most important â€” the conversation."</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spacing -->
+        <section class="section" id="spacing">
+            <h2 class="section-title">Spacing & Grid</h2>
+
+            <div class="section-intro">
+                <h2>Spatial System</h2>
+                <p>Our spacing scale is built on an 8px base unit. This creates consistent rhythm across all applications and ensures visual harmony at every scale.</p>
+            </div>
+
+            <div class="spacing-demo">
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 8px;"></div>
+                    <span class="spacing-label">8px</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 16px;"></div>
+                    <span class="spacing-label">16px</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 24px;"></div>
+                    <span class="spacing-label">24px</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 32px;"></div>
+                    <span class="spacing-label">32px</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 48px;"></div>
+                    <span class="spacing-label">48px</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 64px;"></div>
+                    <span class="spacing-label">64px</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-block" style="width: 96px;"></div>
+                    <span class="spacing-label">96px</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logo -->
+        <section class="section" id="logo">
+            <h2 class="section-title">Logo & Marks</h2>
+
+            <div class="section-intro">
+                <h2>The Cc Mark</h2>
+                <p>The Centre Channel mark consists of two C letters â€” one capital, one lowercase italic â€” divided by a diagonal line within a circle. This represents the dialogue between consultant and client, the bridge between strategy and execution.</p>
+            </div>
+
+            <div class="logo-grid">
+                <div class="logo-card logo-card-dark">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                        <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                        <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                        <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                    </svg>
+                    <div class="logo-card-label">Brass on Ink Black</div>
+                </div>
+
+                <div class="logo-card logo-card-cream">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="47" stroke="#1a1918" stroke-width="2"/>
+                        <line x1="22" y1="78" x2="78" y2="22" stroke="#1a1918" stroke-width="1.5"/>
+                        <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#1a1918">C</text>
+                        <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#1a1918">c</text>
+                    </svg>
+                    <div class="logo-card-label">Ink Black on Cream</div>
+                </div>
+
+                <div class="logo-card logo-card-forest">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                        <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                        <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                        <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                    </svg>
+                    <div class="logo-card-label">Brass on Forest</div>
+                </div>
+
+                <div class="logo-card logo-card-brass">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="47" stroke="#0a0a0a" stroke-width="2"/>
+                        <line x1="22" y1="78" x2="78" y2="22" stroke="#0a0a0a" stroke-width="1.5"/>
+                        <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#0a0a0a">C</text>
+                        <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#0a0a0a">c</text>
+                    </svg>
+                    <div class="logo-card-label">Ink Black on Brass</div>
+                </div>
+            </div>
+
+            <div class="clear-space-demo">
+                <div class="clear-space-container">
+                    <span class="clear-space-mark top">1x</span>
+                    <span class="clear-space-mark bottom">1x</span>
+                    <span class="clear-space-mark left">1x</span>
+                    <span class="clear-space-mark right">1x</span>
+                    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                        <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                        <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                        <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                    </svg>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-4);">Minimum clear space: 1x mark width on all sides</p>
+        </section>
+
+        <!-- Buttons -->
+        <section class="section" id="buttons">
+            <h2 class="section-title">Buttons</h2>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-title">Light Background</div>
+                    <div class="button-group">
+                        <button class="btn btn-primary">Primary</button>
+                        <button class="btn btn-secondary">Secondary</button>
+                    </div>
+                </div>
+
+                <div class="component-card component-card-dark">
+                    <div class="component-title">Dark Background</div>
+                    <div class="button-group">
+                        <button class="btn btn-brass">Primary</button>
+                        <button class="btn btn-ghost">Ghost</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forms -->
+        <section class="section" id="forms">
+            <h2 class="section-title">Form Elements</h2>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-title">Light Background</div>
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="you@example.com">
+                    </div>
+                </div>
+
+                <div class="component-card component-card-dark">
+                    <div class="component-title">Dark Background</div>
+                    <div class="form-group">
+                        <label class="form-label" style="color: var(--brass);">Name</label>
+                        <input type="text" class="form-input form-input-dark" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" style="color: var(--brass);">Email</label>
+                        <input type="email" class="form-input form-input-dark" placeholder="you@example.com">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section class="section" id="cards">
+            <h2 class="section-title">Cards & Containers</h2>
+
+            <div class="component-grid">
+                <div class="card">
+                    <h3 class="type-h3" style="margin-bottom: var(--space-3);">Default Card</h3>
+                    <p class="type-body" style="color: var(--text-secondary);">Cards provide contained spaces for content groupings.</p>
+                </div>
+
+                <div class="card card-dark">
+                    <h3 class="type-h3" style="margin-bottom: var(--space-3); color: var(--cream);">Dark Card</h3>
+                    <p class="type-body" style="color: var(--text-light-muted);">Dark cards create contrast and highlight premium content.</p>
+                </div>
+
+                <div class="quote-block">
+                    <p>"The centre channel prioritises dialogue. It cuts through the noise to focus on what's most important."</p>
+                    <cite>â€” Mark Leach</cite>
+                </div>
+            </div>
+        </section>
+
+        <!-- Website -->
+        <section class="section" id="website">
+            <h2 class="section-title">Website Application</h2>
+
+            <div class="section-intro">
+                <h2>Digital Presence</h2>
+                <p>The website uses an immersive dark aesthetic throughout, creating a distinctive, premium feel that sets Centre Channel apart from typical consultancy sites.</p>
+            </div>
+
+            <div class="website-preview" style="margin-bottom: var(--space-6);">
+                <div class="website-browser-bar">
+                    <div class="browser-dot red"></div>
+                    <div class="browser-dot yellow"></div>
+                    <div class="browser-dot green"></div>
+                </div>
+                
+                <!-- Nav -->
+                <div class="nav-example-dark">
+                    <div class="nav-example-logo">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                            <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                            <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                            <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                        </svg>
+                    </div>
+                    <div class="nav-example-links">
+                        <a href="#">How I Work</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <a href="#" class="nav-example-cta">Let's Talk</a>
+                </div>
+
+                <!-- Hero -->
+                <div class="hero-example-dark">
+                    <div class="hero-example-content">
+                        <div class="hero-example-label">Centre Channel</div>
+                        <h2>You know digital growth is essential, but everyone's giving you <em>different advice.</em></h2>
+                        <p class="hero-example-sub">You need strategic clarity, not more opinions.</p>
+                        <a href="#" class="hero-cta-example">
+                            Learn more <span></span>
+                        </a>
+                    </div>
+                    <div class="scroll-indicator-example">
+                        <span>Scroll</span>
+                        <div class="scroll-line-example"></div>
+                    </div>
+                </div>
+
+                <!-- Problems -->
+                <div class="problems-example">
+                    <div class="problems-example-header">
+                        <div class="problems-example-label">The Real Problems</div>
+                        <h3>I help ambitious leaders cut through the noise and make informed decisions.</h3>
+                    </div>
+                    <div class="problems-grid-example">
+                        <div class="problem-card-example">
+                            <h4>Are your agencies on point?</h4>
+                            <p>You're paying good money but can't tell if you're getting value or just expensive presentations.</p>
+                        </div>
+                        <div class="problem-card-example">
+                            <h4>Does your board have digital expertise?</h4>
+                            <p>You need someone who can push these initiatives through and ensure they deliver results.</p>
+                        </div>
+                        <div class="problem-card-example">
+                            <h4>Do you have the team to deliver?</h4>
+                            <p>You know digital is important but don't have the experience to make confident decisions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credentials -->
+                <div class="credentials-example">
+                    <div class="credential-example">
+                        <div class="credential-number">20+</div>
+                        <div class="credential-label">Years in digital</div>
+                    </div>
+                    <div class="credential-example">
+                        <div class="credential-number">7-fig</div>
+                        <div class="credential-label">Agency exit</div>
+                    </div>
+                    <div class="credential-example">
+                        <div class="credential-number">100%</div>
+                        <div class="credential-label">Client retention</div>
+                    </div>
+                    <div class="credential-example">
+                        <div class="credential-number">#1</div>
+                        <div class="credential-label">App Store rank</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="app-section-title">Key Patterns</h3>
+            <ul class="guideline-list">
+                <li>Full-bleed Ink Black background throughout â€” never white</li>
+                <li>Subtle radial brass gradients positioned asymmetrically for depth</li>
+                <li>Navigation fades from solid black to transparent</li>
+                <li>Hero headlines use Cormorant Garamond Light at 64px with italic brass emphasis</li>
+                <li>Scroll indicator with vertical text and brass gradient line</li>
+                <li>Section dividers use warm-black horizontal gradients</li>
+                <li>Credentials grid uses Deep Black cards on Ink Black background</li>
+                <li>Link CTAs use "Learn more" with expanding brass line on hover</li>
+            </ul>
+        </section>
+
+        <!-- Strategy Cards -->
+        <section class="section" id="strategy-cards">
+            <h2 class="section-title">Strategy Cards</h2>
+
+            <div class="section-intro">
+                <h2>Conversation Prompts</h2>
+                <p>A deck of strategy cards designed to spark better conversations and challenge assumptions. Perfect for workshops, client sessions, or as a memorable leave-behind gift.</p>
+            </div>
+
+            <div class="cards-section">
+                <div class="cards-mockup">
+                    <div class="card-box">
+                        <svg class="box-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                            <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                            <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                            <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                        </svg>
+                    </div>
+                    <div class="card-stack">
+                        <div class="strategy-card">
+                            <p class="strategy-card-text">What would you do if budget were zero?</p>
+                        </div>
+                        <div class="strategy-card">
+                            <p class="strategy-card-text">Who haven't you asked?</p>
+                        </div>
+                        <div class="strategy-card">
+                            <p class="strategy-card-text">Is this a technology problem or a clarity problem?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cards-notes">
+                    <h4>Production Specifications</h4>
+                    <ul>
+                        <li>Rigid lift-off lid box, soft-touch black finish</li>
+                        <li>Gold foil Cc mark centred on lid</li>
+                        <li>36 cards, 300gsm cream uncoated stock</li>
+                        <li>Credit card size (85 Ã— 55mm)</li>
+                        <li>Rounded corners (3mm radius)</li>
+                        <li>Cormorant Garamond for question text</li>
+                        <li>Optional category colour coding on card edge</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sample-cards">
+                <div class="sample-card">
+                    <p>What are you avoiding?</p>
+                </div>
+                <div class="sample-card">
+                    <p>What would your customer say?</p>
+                </div>
+                <div class="sample-card">
+                    <p>If you had to decide today, what would you choose?</p>
+                </div>
+                <div class="sample-card">
+                    <p>What's the one thing that makes everything else easier?</p>
+                </div>
+                <div class="sample-card">
+                    <p>What would need to be true for this to work?</p>
+                </div>
+                <div class="sample-card">
+                    <p>Stop. Go for a walk.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media -->
+        <section class="section" id="social-media">
+            <h2 class="section-title">Social Media</h2>
+
+            <div class="section-intro">
+                <h2>Social Templates</h2>
+                <p>Social media should feel consistent with our broader brand â€” confident, premium, and never shouty. We favour quality over quantity, with rare but substantial presence.</p>
+            </div>
+
+            <div class="social-grid">
+                <!-- LinkedIn Post -->
+                <div class="linkedin-post">
+                    <div class="linkedin-header">
+                        <div class="linkedin-avatar">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                                <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                                <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                                <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="linkedin-name">Mark Leach</div>
+                            <div class="linkedin-title">Founder, Centre Channel</div>
+                        </div>
+                    </div>
+                    <div class="linkedin-image">
+                        <div class="linkedin-image-content">
+                            <h3>Strategic clarity, not more opinions.</h3>
+                        </div>
+                    </div>
+                    <div class="linkedin-body">
+                        <p>Preview of LinkedIn image post format. Statement headlines on dark backgrounds, brass gradient overlay positioned asymmetrically.</p>
+                    </div>
+                </div>
+
+                <!-- Instagram Post -->
+                <div class="instagram-post">
+                    <div class="instagram-header">
+                        <div class="instagram-avatar">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                                <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                                <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                                <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                            </svg>
+                        </div>
+                        <div class="instagram-username">centrechannel</div>
+                    </div>
+                    <div class="instagram-image">
+                        <div class="instagram-image-content">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                                <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                                <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                                <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                            </svg>
+                            <p>"Where the conversation comes into focus"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LinkedIn Banner -->
+            <div style="margin-top: var(--space-6);">
+                <h3 class="app-section-title">LinkedIn Profile Banner</h3>
+                <div class="linkedin-banner">
+                    <div class="linkedin-banner-content">
+                        <h3>Strategic Digital Consultant</h3>
+                        <p>Deliberate thought for digital commerce</p>
+                    </div>
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                        <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                        <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                        <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                    </svg>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-6);">
+                <h3 class="app-section-title">Social Guidelines</h3>
+                <ul class="guideline-list">
+                    <li>Always use dark backgrounds â€” never white or light grey</li>
+                    <li>Headlines in Cormorant Garamond, centred or left-aligned</li>
+                    <li>Brass radial gradient positioned off-centre for visual interest</li>
+                    <li>Cc mark used sparingly â€” as avatar or subtle watermark</li>
+                    <li>Keep text minimal â€” one strong statement per image</li>
+                    <li>Never use stock photography that feels generic or obvious</li>
+                    <li>Tone: confident, thoughtful, never promotional or urgent</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Email Signature -->
+        <section class="section" id="email-signature">
+            <h2 class="section-title">Email Signature</h2>
+
+            <div class="section-intro">
+                <h2>Email Identity</h2>
+                <p>Email signatures should be professional and scannable. Two variants are provided â€” a full version with logo mark, and a minimal text-only version for ongoing threads.</p>
+            </div>
+
+            <div class="component-grid">
+                <div>
+                    <h3 class="app-section-title">Standard Signature</h3>
+                    <div class="email-signature-preview">
+                        <div class="email-sig-divider"></div>
+                        <div class="email-sig-content">
+                            <div class="email-sig-logo">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="50" cy="50" r="47" stroke="#1a1918" stroke-width="2"/>
+                                    <line x1="22" y1="78" x2="78" y2="22" stroke="#1a1918" stroke-width="1.5"/>
+                                    <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#1a1918">C</text>
+                                    <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#1a1918">c</text>
+                                </svg>
+                            </div>
+                            <div class="email-sig-info">
+                                <div class="email-sig-name">Mark Leach</div>
+                                <div class="email-sig-title">Principal Consultant</div>
+                                <div class="email-sig-details">
+                                    <a href="mailto:mark@centrechannel.com">mark@centrechannel.com</a><br>
+                                    +44 7429 164 215<br>
+                                    <a href="https://centrechannel.com">centrechannel.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="app-section-title">Minimal Signature</h3>
+                    <div class="email-signature-minimal">
+                        <div class="email-sig-minimal-name">Mark Leach</div>
+                        <div class="email-sig-minimal-title">Centre Channel</div>
+                        <a href="https://centrechannel.com" class="email-sig-minimal-link">centrechannel.com</a>
+                    </div>
+                    <p style="font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-4);">Use for replies and ongoing threads where the full signature would be excessive.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-6);">
+                <h3 class="app-section-title">Implementation Notes</h3>
+                <ul class="guideline-list">
+                    <li>Brass divider line: 60px wide, 2px height, #b8976a</li>
+                    <li>Logo mark: 48px Ã— 48px, ink black stroke on white background</li>
+                    <li>Name: Cormorant Garamond Medium, 18px</li>
+                    <li>Title: DM Sans Regular, 13px, muted grey</li>
+                    <li>Contact details: DM Sans Regular, 11px, links in brass</li>
+                    <li>Do not include social media icons or unnecessary links</li>
+                    <li>Keep to essential information only â€” no quotes or taglines</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Presentations -->
+        <section class="section" id="presentations">
+            <h2 class="section-title">Presentations</h2>
+
+            <div class="section-intro">
+                <h2>Slide Decks</h2>
+                <p>Presentations maintain brand consistency while adapting to presentation software constraints. Title slides use dark backgrounds; content slides can use cream for readability.</p>
+            </div>
+
+            <div class="app-grid">
+                <div class="slide-preview">
+                    <div class="slide slide-title">
+                        <h2>Discovery Output</h2>
+                        <div class="slide-subtitle">Network Digital Marketing Â· Native App</div>
+                    </div>
+                </div>
+
+                <div class="slide-preview">
+                    <div class="slide slide-content">
+                        <div class="slide-content-header">Key Deliverables</div>
+                        <div class="slide-content-body">
+                            <div class="slide-content-item">
+                                <h4>Advisory</h4>
+                                <p>Attendance at key events up to launch</p>
+                            </div>
+                            <div class="slide-content-item">
+                                <h4>Product Backlog</h4>
+                                <p>Stories for the first 2 sprints</p>
+                            </div>
+                            <div class="slide-content-item">
+                                <h4>Designs</h4>
+                                <p>Wireframes and prototype requirements</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documents -->
+        <section class="section" id="documents">
+            <h2 class="section-title">Documents</h2>
+
+            <div class="section-intro">
+                <h2>Print & PDF</h2>
+                <p>Documents carry the brand into formal communications â€” proposals, reports, and strategic documentation.</p>
+            </div>
+
+            <div class="app-grid">
+                <div class="document-preview">
+                    <div class="document-header">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                            <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                            <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                            <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                        </svg>
+                        <div class="document-header-info">
+                            <h3>Strategic Proposal</h3>
+                            <p>Prepared for Abbott Lyon Â· January 2025</p>
+                        </div>
+                    </div>
+                    <div class="document-body">
+                        <h3 class="document-section-title">Executive Summary</h3>
+                        <p class="document-text">This proposal outlines a strategic approach to elevating your digital capabilities. Our focus will be on customer experience, technology stack, and team capability.</p>
+                        <div class="document-divider"></div>
+                        <h3 class="document-section-title">Proposed Approach</h3>
+                        <p class="document-text">We recommend a phased implementation balancing quick wins with structural improvements.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="app-section-title">Document Elements</h3>
+                    <ul class="guideline-list">
+                        <li><strong>Header:</strong> Ink Black bar with brass Cc mark</li>
+                        <li><strong>Section titles:</strong> Cormorant Garamond Medium, 18pt</li>
+                        <li><strong>Body text:</strong> DM Sans Regular, 11pt</li>
+                        <li><strong>Dividers:</strong> Brass gradient, partial width</li>
+                        <li><strong>Margins:</strong> Generous â€” 25mm minimum</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Cards -->
+        <section class="section" id="business-cards">
+            <h2 class="section-title">Business Cards</h2>
+
+            <div class="section-intro">
+                <h2>Physical Identity</h2>
+                <p>Business cards should feel premium and memorable â€” a tactile expression of "carefully considered."</p>
+            </div>
+
+            <div class="business-card-preview">
+                <div class="business-card business-card-front">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                        <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                        <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                        <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                    </svg>
+                </div>
+                <div class="business-card business-card-back">
+                    <div>
+                        <div class="business-card-name">Mark Leach</div>
+                        <div class="business-card-title">Principal Consultant</div>
+                    </div>
+                    <div class="business-card-contact">
+                        mark@centrechannel.com<br>
+                        +44 7429 164 215<br>
+                        centrechannel.com
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-6);">
+                <h3 class="app-section-title">Production Specifications</h3>
+                <ul class="guideline-list">
+                    <li><strong>Size:</strong> 85 Ã— 55mm (standard UK)</li>
+                    <li><strong>Stock:</strong> 400gsm Colorplan Ebony or equivalent</li>
+                    <li><strong>Front:</strong> Gold foil Cc mark, centred</li>
+                    <li><strong>Back:</strong> Colorplan Mist, letterpress text</li>
+                    <li><strong>Finish:</strong> Soft-touch matte both sides</li>
+                    <li><strong>Optional:</strong> Gold foil edge painting</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Merchandise -->
+        <section class="section" id="merchandise">
+            <h2 class="section-title">Merchandise</h2>
+
+            <div class="section-intro">
+                <h2>Branded Items</h2>
+                <p>Merchandise should feel like thoughtful gifts, not promotional items. Each piece should be useful, well-made, and carry the brand with subtlety.</p>
+            </div>
+
+            <div class="merch-grid">
+                <div class="merch-item">
+                    <div class="merch-visual">
+                        <div class="merch-notebook">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                                <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                                <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                                <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <h4>Notebook</h4>
+                    <p>A5, black cloth cover, gold foil mark</p>
+                </div>
+
+                <div class="merch-item">
+                    <div class="merch-visual">
+                        <div class="merch-tote">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="47" stroke="#1a1918" stroke-width="2"/>
+                                <line x1="22" y1="78" x2="78" y2="22" stroke="#1a1918" stroke-width="1.5"/>
+                                <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#1a1918">C</text>
+                                <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#1a1918">c</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <h4>Tote Bag</h4>
+                    <p>Heavy canvas, natural colour</p>
+                </div>
+
+                <div class="merch-item">
+                    <div class="merch-visual">
+                        <div class="merch-pen"></div>
+                    </div>
+                    <h4>Pen</h4>
+                    <p>Matte black barrel, brass clip</p>
+                </div>
+
+                <div class="merch-item">
+                    <div class="merch-visual">
+                        <div class="merch-coaster">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="47" stroke="#b8976a" stroke-width="2"/>
+                                <line x1="22" y1="78" x2="78" y2="22" stroke="#b8976a" stroke-width="1.5"/>
+                                <text x="24" y="46" font-family="DM Sans, sans-serif" font-size="28" font-weight="600" fill="#b8976a">C</text>
+                                <text x="54" y="76" font-family="DM Sans, sans-serif" font-size="26" font-weight="400" font-style="italic" fill="#b8976a">c</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <h4>Coaster</h4>
+                    <p>Leather, debossed mark</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Do's and Don'ts -->
+        <section class="section" id="dos-donts">
+            <h2 class="section-title">Do's & Don'ts</h2>
+
+            <div class="guideline-grid">
+                <div class="guideline-card do">
+                    <div class="guideline-label">Do</div>
+                    <ul class="guideline-list">
+                        <li>Use generous white space â€” let elements breathe</li>
+                        <li>Maintain brass/black contrast for key moments</li>
+                        <li>Use Cormorant Garamond for headlines</li>
+                        <li>Apply radial gradients subtly and asymmetrically</li>
+                        <li>Keep the mark at appropriate sizes (min 24px)</li>
+                        <li>Prioritise clarity and readability</li>
+                        <li>Let quality materials speak for themselves</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card dont">
+                    <div class="guideline-label">Don't</div>
+                    <ul class="guideline-list">
+                        <li>Stretch or distort the Cc mark</li>
+                        <li>Use brass on light backgrounds (low contrast)</li>
+                        <li>Mix other typefaces into the system</li>
+                        <li>Apply heavy drop shadows or glows</li>
+                        <li>Crowd layouts â€” avoid visual clutter</li>
+                        <li>Use generic stock photography</li>
+                        <li>Add unnecessary decorative elements</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Voice & Tone -->
+        <section class="section" id="voice">
+            <h2 class="section-title">Voice & Tone</h2>
+
+            <div class="section-intro">
+                <h2>How We Sound</h2>
+                <p>Centre Channel's voice is confident without being arrogant, knowledgeable without being condescending. We speak plainly, with warmth and authority.</p>
+            </div>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-title">We Are</div>
+                    <ul class="guideline-list">
+                        <li><strong>Confident:</strong> We know our expertise and share it directly</li>
+                        <li><strong>Clear:</strong> Complex ideas, simple language</li>
+                        <li><strong>Warm:</strong> Professional but personable</li>
+                        <li><strong>Honest:</strong> Direct about what we can and can't do</li>
+                        <li><strong>Thoughtful:</strong> Every word is deliberate</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-title">We're Not</div>
+                    <ul class="guideline-list">
+                        <li><strong>Jargon-heavy:</strong> No buzzwords or corporate speak</li>
+                        <li><strong>Salesy:</strong> We don't push or pressure</li>
+                        <li><strong>Vague:</strong> We make specific, concrete statements</li>
+                        <li><strong>Arrogant:</strong> Confidence isn't superiority</li>
+                        <li><strong>Trendy:</strong> We don't chase what's fashionable</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-block" style="margin-top: var(--space-6);">
+                <p>"Carefully considered and exclusively accessible."</p>
+                <cite>â€” Brand Essence</cite>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-quote">"Where the conversation comes into focus"</p>
+            <p class="footer-info">Centre Channel Design System v1.0 Â· January 2025</p>
+        </footer>
+    </main>
+</body>
+</html>
