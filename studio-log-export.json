@@ -1,0 +1,502 @@
+[
+  {
+    "id": "act-29d4fef020fde564",
+    "timestamp": "2026-04-14T11:26:21.183Z",
+    "description": "direct curl test",
+    "category": "signal",
+    "outputType": null,
+    "outputStatus": null,
+    "relatedCompany": null,
+    "notes": null
+  },
+  {
+    "id": "act-241e6f9227526c72",
+    "timestamp": "2026-04-14T11:30:46.001Z",
+    "description": "Test activity logged to verify Studio Log add-activity endpoint is working correctly via Claude.",
+    "category": "os-build",
+    "outputType": "test",
+    "outputStatus": "complete",
+    "relatedCompany": null,
+    "notes": "This is a test entry and can be deleted."
+  },
+  {
+    "id": "act-30f0e23b3aadc8ca",
+    "timestamp": "2026-04-14T12:38:57.417Z",
+    "description": "Pipeline warming run. Sent 6 emails: Selfridges, Ann Summers, Olivia's, Lights4Fun, Sharps, Zuto. Created 3 new pipeline entries. Updated 5 existing entries.",
+    "category": "pipeline",
+    "outputType": "email",
+    "outputStatus": "sent",
+    "relatedCompany": null,
+    "notes": "Campfire and Apadmi held back. Duga paused by agreement. Zuto included 6 AI adoption questions from Network experience."
+  },
+  {
+    "id": "act-f49d73127be1ae10",
+    "timestamp": "2026-04-17T08:58:00.227Z",
+    "description": "Surfaced a reliability issue with Studio Log auto-logging. Only three entries existed in the log despite the memory instruction that significant deliverables should be auto-logged. Combination of silent MCP disconnections and inconsistent logging behaviour when connected.",
+    "category": "os-build",
+    "outputType": "diagnostic",
+    "outputStatus": "open",
+    "relatedCompany": null,
+    "notes": "Next steps for tech advisor: (1) add a health-check endpoint on Lounge MCP so connection state is visible, (2) surface connection status in the UI so silent disconnects stop being silent, (3) consider a weekly Studio Manager summary comparing sessions run vs activities logged so the gap becomes evidence. Interim behaviour agreed: Claude to treat logging as the last visible action of any significant session, use connection state as a canary, and accept \"log this\" as a reliable fallback trigger from Mark."
+  },
+  {
+    "id": "act-c7cdd8c12bcb1d2b",
+    "timestamp": "2026-04-18T08:14:40.562Z",
+    "description": "Claude Partner Network application cleared initial review. Anthropic confirmed approval to move forward on path to partnership; partner portal and full programme tiering/criteria to follow in coming weeks.",
+    "category": "signal",
+    "outputType": "signal",
+    "outputStatus": "in-review",
+    "relatedCompany": null,
+    "notes": "Action plan from Anthropic: enrol 10 team members in Anthropic Academy, complete the CPN learning path, then confirm completion to unlock Claude Certified Architect Foundations (CCAF) technical cert. Public announcement embargoed until Anthropic signals. Friction: spec is built for SIs/agencies, not a fractional practice. Recommended approach: reply to partner-events@mail.anthropic.com to clarify the pathway for solo/micro-practices, and start own training in parallel. Drafting reply deferred pending Mark confirmation."
+  },
+  {
+    "id": "act-9ceaddcf998b8854",
+    "timestamp": "2026-04-22T15:44:28.933Z",
+    "description": "Diagnosed and resolved Lounge MCP OAuth connection failure. Connector kept returning mcp_token_exchange_failed. Root cause was MCP-Protocol-Version header handling in the MCP function; tech advisor shipped the fix and connection is now stable.",
+    "category": "os-build",
+    "outputType": "fix",
+    "outputStatus": "deployed",
+    "relatedCompany": null,
+    "notes": "Initial diagnosis pointed at intermittent 503 DNS cache overflow on /oauth/token (8/20 stress test failures) — red herring. Real issue was protocol version header. Side-finding for next OS pass: CORS allow-origin on MCP endpoint hardcoded to centrechannel.co.uk instead of .com."
+  },
+  {
+    "id": "act-cf16061cd5cdaf74",
+    "timestamp": "2026-04-22T15:49:57.671Z",
+    "description": "Diagnosed and resolved Lounge MCP OAuth connection failure that was blocking all MCP tool use in Claude. Tech advisor shipped fix to MCP-Protocol-Version header handling in the MCP function; connection now stable.",
+    "category": "os-build",
+    "outputType": "fix",
+    "outputStatus": "shipped",
+    "relatedCompany": null,
+    "notes": "Failure surfaced to user as mcp_token_exchange_failed error in Claude connector flow. Initial diagnosis highlighted intermittent 503 \"DNS cache overflow\" errors on /oauth/token (8/20 stress test failures vs 0/20 on /oauth/register), but real cause was MCP-Protocol-Version header handling. Worth remembering: connector errors that look like infra issues can be handshake mismatches. Side-finding: CORS allow-origin on the MCP endpoint is hardcoded to centrechannel.co.uk instead of .com — harmless but worth fixing in next OS pass."
+  },
+  {
+    "id": "act-cdc4dedca4388a0d",
+    "timestamp": "2026-04-23T08:20:14.740Z",
+    "description": "BD review of five conversation-stage opportunities. Verified follow-up status against Gmail sent folder and recommended next moves.",
+    "category": "pipeline",
+    "outputType": "analysis",
+    "outputStatus": "final",
+    "relatedCompany": null,
+    "notes": "Olivia's paused 14 Apr. Ann Summers and Zuto followed up 14 Apr, awaiting reply. Campfire (last contact 5 Mar) and Selfridges (last contact 12 Jan) need re-warm not follow-up. Two moves recommended: re-warm Campfire and Selfridges with signal-led notes; convert Kelly Byrne's 22 Apr Abbott Lyon intro to Alex Roberts and Kim Jones into a booked conversation. Gareth Jones co-author play on Article 03 stands as parallel move."
+  },
+  {
+    "id": "act-677e382ff6dde34e",
+    "timestamp": "2026-04-28T11:35:13.250Z",
+    "description": "Produced a discussion document for Mark/Centre Channel using the same format as client work (Olivia's, Sharps). Surfaces the case that Mark has already built a method through proposals and skills and hasn't named it. Working frame: Truth, Pattern, Move as the three lenses.",
+    "category": "admin",
+    "outputType": "discussion-document",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Brainstorm session on positioning. Pipeline soft, availability open. Triggered by Mark's observation that boards are buying him not a method. Studied three proposals (Network 2024, Sharps and Olivia's 2026) and four strategic skills (client-brief-reframing, ai-approach, diagnostic-report, centre-channel-proposals). Pressure-tested via Louie Simmons / Conjugate Method as primary analogue, plus Chris Appleton, Nicky Holender, Tim Grover, Marie Kondo, Ray Dalio. Five-component model: authority + named method + place + body of knowledge + cross-category proof. Centre Channel has 4 of 5. Document ends with three decisions and three open questions for next session."
+  },
+  {
+    "id": "act-3942103daa588298",
+    "timestamp": "2026-04-28T12:34:19.103Z",
+    "description": "Test entry to verify the Lounge MCP add-activity tool is working from Claude.",
+    "category": "os-build",
+    "outputType": "test",
+    "outputStatus": "test",
+    "relatedCompany": null,
+    "notes": "Connectivity test, can be deleted."
+  },
+  {
+    "id": "act-2f372b7fe9edadd8",
+    "timestamp": "2026-04-28T13:20:01.236Z",
+    "description": "Test log entry to confirm Studio Log auto-logging via Lounge MCP add-activity is working end to end.",
+    "category": "admin",
+    "outputType": "test",
+    "outputStatus": "complete",
+    "relatedCompany": null,
+    "notes": "Triggered by Mark to verify the MCP write path. Safe to delete."
+  },
+  {
+    "id": "act-7f5e4572be24cbba",
+    "timestamp": "2026-04-29T13:42:31.480Z",
+    "description": "Adapted the Centre Channel Internal Playbook v1 (Signal stress-test, 16pp PDF) into a short 9-slide branded HTML deck for Ellie. Vertical scroll-snap, dark theme, keyboard nav, print-stylesheet to A4. Faithful to the source: cover, why-this-exists, honest starting point, peer set (3 groups), economics, five sharpenings, eight-factor scorecard, five recommendations, closing line.",
+    "category": "signal",
+    "outputType": "deck",
+    "outputStatus": "final",
+    "relatedCompany": null,
+    "notes": "Stress test of multi-format documentation workflow per Mark's framing. Same source content now exists as: PDF (print edition), HTML deck. Pattern is reusable for future strategic docs. Brass / Cormorant / DM Sans dark theme held up well in deck format."
+  },
+  {
+    "id": "act-29085f5c510663da",
+    "timestamp": "2026-04-29T23:02:40.013Z",
+    "description": "Strategic reframe of the Signal method away from sales-coded references (MEDDICC) toward strategic counsel lineage (Rumelt, Grove, Martin, Horowitz, Thompson, Cynefin, Wardley). Identified that Mark's instincts — encouraging team to look for signals of success, measuring weird leading indicators (no-shows as churn predictor), contrarian pattern recognition — are all the same instinct: reading actual signal in noise that others miss. This is a sharper articulation of Signal than \"clarity before AI.\"",
+    "category": "signal",
+    "outputType": "strategic-direction",
+    "outputStatus": "in-progress",
+    "relatedCompany": null,
+    "notes": "Next steps: (1) Mark to read Rumelt and Grove. (2) Set up a story log structure — each story captured as story / pattern / play (mirrors the three questions). (3) Revisit commercial model document and shift Backstage/Soundcheck language away from \"encoded methodology\" toward \"diagnostic, made repeatable.\" (4) Open question to Mark on the team development story — what was he actually teaching when he told the team to look for signals of success. Push-back held: contrarianism for its own sake is a brand trap; contrarianism on top of sharper diagnosis is the bar. Reference set: Roger Martin (Playing to Win), Richard Rumelt (Good Strategy/Bad Strategy), Andy Grove (Only the Paranoid Survive), Ben Horowitz (The Hard Thing About Hard Things), Ben Thompson (Stratechery), Cynefin (Snowden), Wardley mapping."
+  },
+  {
+    "id": "act-e8eaa1bf39bd654f",
+    "timestamp": "2026-04-29T23:12:19.562Z",
+    "description": "Story logged: \"Signal from the future.\" At Missguided, Mark coached his optimiser-mindset team to imagine forward and describe the signal they'd see when something had improved or changed. A reflective practice disguised as a forward-looking one — smuggled reflection in through the optimiser's front door. This is the same discipline that later spotted no-shows as a churn predictor: pattern recognition trained on the future.",
+    "category": "signal",
+    "outputType": "signal-story",
+    "outputStatus": "captured",
+    "relatedCompany": "Missguided",
+    "notes": "STORY / PATTERN / PLAY format for the Signal pattern library:\n\nStory: Optimiser teams resist reflection because it feels like falling behind. Mark reframed reflection as \"imagine forward and name the signal you'd see\" — gave optimisers a forward-leaning tool that did reflection's work without using the word.\n\nPattern: Optimisers will not stop to look back, but they will look forward. Reframe reflection as future signal-hunting and you get the same outcome with no resistance.\n\nPlay: Don't ask the team to reflect. Ask them to imagine the future state and describe the leading indicator that would tell them they got there.\n\nWorking chapter title: \"Signal from the future.\" \"Reverse manifestation\" stays in conversation but doesn't make the printed page. Open question outstanding to Mark: was there a specific moment it landed for one of the team — a specific person, a specific cycle. If yes, that's a chapter opener fully formed.\n\nOrigin claim: Signal isn't something Mark is inventing. It's something he's been practising and teaching for a decade. He's naming it now. That's the stronger origin story for the method."
+  },
+  {
+    "id": "act-22c5318a22a2085e",
+    "timestamp": "2026-04-29T23:12:35.178Z",
+    "description": "Story logged: \"The phone number that wasn't.\" At Missguided, customers complained constantly about the lack of a phone number. The team tested one and discovered young teenage girls don't use the phone — they panic when it rings. The real signal underneath the complaint was \"I want a fast answer,\" not \"I want to talk to someone.\" Team built an automated parcel tracker, which solved the actual job.",
+    "category": "signal",
+    "outputType": "signal-story",
+    "outputStatus": "captured",
+    "relatedCompany": "Missguided",
+    "notes": "STORY / PATTERN / PLAY format for the Signal pattern library:\n\nStory: Customers asked for a phone number. Team listened, tested it, watched what actually happened (panic), and built something completely different (automated parcel tracker) that solved the underlying need (fast resolution).\n\nPattern: The literal complaint is rarely the brief. Customers describe their need in the language of solutions they already know. The signal is in the job underneath, not the request on top.\n\nPlay: Take the literal request seriously enough to test it. Watch what people do, not what they said they'd do. Build for the job, not the request.\n\nStrong candidate for early chapter or even introduction — accessible, specific, slightly funny, demonstrates the method with no framework needed first. Pairs naturally with the no-shows-as-churn-predictor story (also still to be formally logged) — both are \"read the signal, not the surface\" stories.\n\nReminder for next session: third story still to log — no-shows in client meetings as the leading indicator of churn, before the renewal call ever happens."
+  },
+  {
+    "id": "act-d0026dd2dea8bf8e",
+    "timestamp": "2026-04-29T23:16:49.259Z",
+    "description": "Story logged: \"Give the analytics to finance.\" At Missguided, finance constantly picked apart eCommerce numbers in trading meetings. Mark noticed eCommerce was the only department with its own analyst — that asymmetry was the actual diagnosis, not the data dispute on the surface. He gave the problem to the loudest complainer, supported them with tech, and within months finance owned web reporting at 98% accuracy. The argument disappeared because the structure changed.",
+    "category": "signal",
+    "outputType": "signal-story",
+    "outputStatus": "captured",
+    "relatedCompany": "Missguided",
+    "notes": "STORY / PATTERN / PLAY format for the Signal pattern library:\n\nStory: Two functions kept fighting about the numbers. The fix wasn't better numbers or a better defence of the existing setup. It was handing ownership of the analytics to the team doing the picking-apart, and watching the dispute evaporate.\n\nPattern A: The structural asymmetry is the diagnosis. When something is arranged differently from everything around it, that arrangement is itself the signal. Most operators argue outputs; the move is to ask why the structure exists at all.\n\nPattern B: The loudest complainer is the best operator-in-waiting. People who pick apart a process have the strongest internal model of what good looks like. Give them ownership.\n\nPlay: When two functions are arguing about the truth, the answer is not better data. It is joint ownership of the data. Move the work, kill the fight.\n\nConnections: This is the same operator instinct as the phone-number-that-wasn't story (read the signal, not the surface) and the no-shows-as-churn-predictor (look where others aren't looking). The meta-pattern across all four stories logged so far: the diagnosis is almost never where everyone is looking.\n\nStrong candidate for the chapter on data, signal vs noise, or whichever Part Two chapter handles \"where to look.\" Could also work as a worked example for the eCommerce/board gap material — board can't trust the numbers because the numbers are owned by the team being measured."
+  },
+  {
+    "id": "act-22f3de0314ede8e2",
+    "timestamp": "2026-04-29T23:21:53.822Z",
+    "description": "Story logged: \"The data underneath the redesign.\" At Abbott Lyon, the brief was a website redesign as a strategic enabler. In workshopping it, Mark noticed the room kept hitting workarounds, patches and compromises. He named the underlying structural issue: the data needed restructuring before the website could do what they wanted it to do. The room dynamic shifted instantly — everybody saw something else, stopped compromising, started strategising.",
+    "category": "signal",
+    "outputType": "signal-story",
+    "outputStatus": "captured",
+    "relatedCompany": "Abbott Lyon",
+    "notes": "STORY / PATTERN / PLAY format for the Signal pattern library:\n\nStory: A workshop on a brief kept generating workarounds. Mark counted the workarounds rather than solving them individually, recognised they all pointed to the same structural cause (data architecture), named it, and the conversation shifted from compromise to strategy.\n\nPattern A: The recurring compromise is the diagnosis. When a room keeps having to work around something, the pattern of workarounds is the signal that something underneath is broken. Most facilitators solve each compromise as it arises. The move is to count them and ask what they have in common.\n\nPattern B (NEW): The room shift. Naming the structural problem in the room changes the room. This is intervention, not just diagnosis. Closer to what Mark actually sells than diagnosis alone. The consigliere move.\n\nPlay: When the room keeps hitting workarounds, stop solving the workarounds and name the structural cause they all point to.\n\nUsable copy: \"Stopped compromising and started strategising\" — park for hero or sub-hero use.\n\nConnections: Structurally identical to the finance/analytics Missguided story at strategic altitude. Operational version and strategic version of the same instinct, decades apart — strong evidence base.\n\nSignificance: First logged story from Mark's current work (Abbott Lyon = anchor client). Pattern library now spans Missguided through to today. Practitioner-as-protagonist arc fully formed.\n\nFuture session: dig into the room-shift dimension — what does Mark actually do in those moments? Tone, timing, specific framing? That is where the method becomes teachable beyond Mark."
+  },
+  {
+    "id": "act-4043ff03f2acc4f5",
+    "timestamp": "2026-04-29T23:30:11.276Z",
+    "description": "Working session that pivoted Signal's reference set away from sales methodology (MEDDICC, Mochary) toward strategic counsel lineage (Rumelt, Grove, Martin, Horowitz, Thompson, Cynefin, Wardley), logged five Signal stories with story/pattern/play structure, surfaced a meta-pattern across them (\"the diagnosis is almost never where everyone is looking\"), identified a new untapped dimension of the method (the \"room-shift move\" — intervention, not just diagnosis), and produced a forensic interview prompt to unearth that move in the next session.",
+    "category": "signal",
+    "outputType": "strategic-direction",
+    "outputStatus": "complete",
+    "relatedCompany": null,
+    "notes": "Session arc:\n\n1. Mark challenged the existing Signal playbook as too sales-coded and process-driven. Considered whether to swing toward coaches/mindset; pushback held that this would strip his commercial-operator edge. Landed on strategic counsel as the right reference lineage.\n\n2. Five stories logged to the Signal pattern library (each as separate add-activity entries):\n   - \"Signal from the future\" — coaching optimisers to imagine forward and name the leading indicator\n   - \"The phone number that wasn't\" — Missguided customer service / parcel tracker\n   - \"Give the analytics to finance\" — Missguided structural ownership move\n   - \"The data underneath the redesign\" — Abbott Lyon, current work\n   - (Also surfaced but not yet logged: no-shows as churn predictor — outstanding for next session)\n\n3. Two named patterns emerged with multiple worked examples each:\n   - Read the signal, not the surface\n   - Pattern recognition trained on the future, not the past\n   Plus single-instance patterns: structural asymmetry as diagnosis, loudest complainer as best operator-in-waiting, recurring compromise as diagnosis.\n\n4. Meta-pattern named: \"the diagnosis is almost never where everyone is looking.\" Candidate hero sentence or layer beneath it. Sharper than \"clarity before AI.\"\n\n5. New dimension surfaced: the \"room-shift move.\" Distinct from diagnosis. The intervention itself. Closer to what Mark actually sells than diagnosis alone. Identified as the next unlock for making Signal teachable beyond Mark — and therefore the thing that turns Backstage and Soundcheck into more than wrappers around his calendar.\n\n6. Forensic interview prompt produced for new chat. Designed to extract the tacit skill through specific recalled moments rather than abstract questions. Outputs into the Signal pattern library.\n\nOpen items / next sessions:\n- Mark to read Rumelt and Grove\n- Run the room-shift forensic interview as fresh chat (prompt provided)\n- Log the no-shows-as-churn-predictor story properly\n- Revisit the commercial model document and shift Backstage/Soundcheck language away from \"encoded methodology\" toward \"diagnostic, made repeatable\"\n- Revisit Signal homepage hero sentence in light of \"the diagnosis is almost never where everyone is looking\"\n- Usable copy parked: \"stopped compromising and started strategising\"\n\nNote: Lounge MCP returned one transient error mid-session on the Abbott Lyon story add; recovered on retry. Worth monitoring.\n\nOrigin claim now stronger: Signal is not a method Mark is inventing. It is one he has been practising and teaching for over a decade. He is naming it now."
+  },
+  {
+    "id": "act-d66fafe83dc8884c",
+    "timestamp": "2026-04-30T09:12:43.488Z",
+    "description": "Surfaced and articulated the \"room-shift move\" — Mark's tacit intervention skill — through a forensic interview on five specific moments (Network advisory codes, Network tech roadmap, Network MAM, User Conversion / Sports Direct discount box, Travel Counsellors triangle). Pattern emerged from the detail rather than being imposed. Ready to add to Signal pattern library as the first articulated entry on the intervention half of the method.",
+    "category": "signal",
+    "outputType": "signal-story",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "SIGNAL PATTERN: THE ROOM-SHIFT MOVE\n\nSTORY (the trigger moment)\nNetwork advisory away day. Board mapping out future strategy — full roadmaps, ambitious tech investment, BD targets, customer profiling work. Mark sat through the debate noticing the language was all outcomes, no inputs. Resource heavy and undefined. He silently scanned for what was actually defensible and one thing shone out: \"people want codes that work.\" Customer reviews said it. Nothing else on the table felt like a moat.\n\nHe didn't announce it. He asked probing questions about which parts of the strategy were defensible and which would be removed by market shifts. The room narrowed toward the answer on its own. Then he asked one small concrete question: \"so what are we doing to ensure codes work.\" The CEO got it first, then started asking others questions. Momentum built around it. Used the same hook later for the tech roadmap (\"which part of this addresses broken codes, what if we focused only on that\") and for the metrics question (\"what's our key measure\" — answer: monthly active members).\n\nSame shape recurred elsewhere. User Conversion HR debate about flexible working: borrowed the Apple Regent St \"we catch the bad guys\" line to expose that the company was stifling 35 people because it worried 1 or 2 might take it too far. Sports Direct discount code box: a UI element causing frustration for millions, serving £10k a week of edge cases. Travel Counsellors 1:1 with the CEO: he drew a triangle of TC, Reps, Customers with the TC-Reps line as strongest; Mark added a complementary TC-Customers line rather than challenge the existing one.\n\nPATTERN (the structural shape Mark hunts for)\nA cost / benefit asymmetry where the room is investing heavily in something that doesn't justify it, while under-investing in something that would. Variants: optimising for the minority case at the cost of the majority. Adding capability the room can't defend while ignoring the one capability that's actually a moat. Building infrastructure for an edge case that hurts the main flow.\n\nTwo background filters running constantly:\n- Design out: what here isn't essential?\n- Simple is clever: what here can't be said without jargon?\nAnything that fails either filter gets silently flagged.\n\nPLAY (how the move is executed)\n\nPrep before the room\n- Map who is in the room, what each person believes coming in, who the unlock person is (usually most senior, the one whose nod releases the rest).\n- Carry a curated library of external frames — stories from outside the industry with structurally similar shapes. Sourced from podcasts, magazines, life. Not quotes. Shapes.\n\nIn the room, two routes\n\nRoute 1 — Engineered narrowing (used when the answer is in the room but unspoken)\n1. Probing questions about defensibility, cost, and \"what would happen if we did none of it?\" Inverts the frame from \"what shall we add\" to \"what would we lose if we removed it.\"\n2. Let the room's own logic narrow toward your answer.\n3. Ask one small, concrete-sounding, tactical-feeling question that lands as the obvious next step. The smallness is the point. By the time it's asked, the strategic work is already done.\n\nRoute 2 — Borrowed frame (used when the answer needs to come from outside)\n1. Reach into the library for an external story with the same structural shape.\n2. Drop it in. Don't argue. The story sits there and the shape becomes visible.\n3. Frames must feel weighty, not jovial. Apple lands. Funny anecdotes dissolve tension and let the room off the hook.\n\nThree design rules across both routes\n1. Aim at the unlock person. If they catch it, the room follows. Don't try to convince twelve people.\n2. Refuse the binary. When pushback comes, separate the problem rather than rebut on its terms. \"Well that's a different problem isn't it.\" Two problems become visible where the room saw one.\n3. Add to their model, don't replace it. Use their language, their frames, their triangles. Sit your answer alongside what they already believe — complementary line, not competing one.\n\nWhen it fails\n- Frames pitched too abstract or too jovial don't land. Register has to feel weighty.\n- If the unlock person doesn't catch it first time, switch routes. Don't hammer. Disagree and commit.\n\nEngine underneath\nMark enjoys being clever. The move is craft, not technique. He distils naturally — can't help it. He grazes outside his own industry deliberately because competitors look backward at each other; he looks sideways. The library curates itself because of the pleasure he takes in compression and elegance.\n\nNEXT STEPS\n- This is the first articulated pattern on the intervention half of Signal. The diagnostic half is mature; this opens up the second half.\n- Test the pattern against more recalled moments to confirm it generalises (Abbott Lyon data restructure was the trigger — should be revisited in detail to confirm route used).\n- Consider whether Route 1 and Route 2 are two patterns or one with two modes. Current draft treats them as one move with two routes; may split later.\n- Frame this for Backstage / Soundcheck: Backstage could surface the structural shape; Soundcheck could supply the diagnosis. The room-shift move itself stays human."
+  },
+  {
+    "id": "act-7743c1bef5b6503b",
+    "timestamp": "2026-04-30T09:17:55.844Z",
+    "description": "Updated articulation of \"the room-shift move\" following Mark's refinement: it is a single move, not two routes. The borrowed frame is an optional in-flight step used when the room can't see the shape on its own. Library curation and deployment timing are two separable underlying disciplines. Supersedes earlier draft act-d66fafe83dc8884c.",
+    "category": "signal",
+    "outputType": "signal-story",
+    "outputStatus": "draft-v2",
+    "relatedCompany": null,
+    "notes": "SIGNAL PATTERN: THE ROOM-SHIFT MOVE (v2 — supersedes act-d66fafe83dc8884c)\n\nNAMING NOTE\n\"Room-shift move\" is the working title and may want revisiting. What's actually happening is more specific: spotting cost / benefit asymmetries silently, then engineering the room to arrive at the diagnosis without announcing it.\n\nSTORY (the trigger moment)\nNetwork advisory away day. Board mapping out future strategy — full roadmaps, ambitious tech investment, BD targets, customer profiling work. Mark sat through the debate noticing the language was all outcomes, no inputs. Resource heavy and undefined. He silently scanned for what was actually defensible and one thing shone out: \"people want codes that work.\" Customer reviews said it. Nothing else on the table felt like a moat.\n\nHe didn't announce it. He asked probing questions about which parts of the strategy were defensible and which would be removed by market shifts. The room narrowed toward the answer on its own. Then he asked one small concrete question: \"so what are we doing to ensure codes work.\" The CEO got it first, then started asking others questions. Momentum built around it. Used the same hook later for the tech roadmap and for the metrics question (which surfaced monthly active members as the key measure).\n\nSame shape recurred elsewhere. User Conversion HR debate about flexible working: Mark borrowed the Apple Regent St \"we catch the bad guys\" line to expose that the company was stifling 35 people because it worried 1 or 2 might take it too far. Sports Direct discount code box: a UI element causing frustration for millions, serving £10k a week of edge cases. Travel Counsellors 1:1 with the CEO: he drew a triangle of TC, Reps, Customers with the TC-Reps line as strongest; Mark added a complementary TC-Customers line rather than challenge the existing one.\n\nPATTERN (the structural shape Mark hunts for)\nA cost / benefit asymmetry where the room is investing heavily in something that doesn't justify it, while under-investing in something that would. Variants: optimising for the minority case at the cost of the majority. Adding capability the room can't defend while ignoring the one capability that's actually a moat. Building infrastructure for an edge case that hurts the main flow.\n\nTwo background filters running constantly:\n- Design out: what here isn't essential?\n- Simple is clever: what here can't be said without jargon?\nAnything that fails either filter gets silently flagged.\n\nPLAY (how the move is executed)\n\nPrep before the room\n- Map who is in the room, what each person believes coming in, who the unlock person is (usually most senior, the one whose nod releases the rest).\n\nThe move (always, in this order)\n1. Spot the asymmetry silently. Run the two filters. Identify the one thing in the room that's actually defensible / actually matters / actually justifies the investment.\n2. Engineer the room toward the diagnosis. Probing questions about defensibility, cost, and \"what would happen if we did none of it?\" Inverts the frame from \"what shall we add\" to \"what would we lose if we removed it.\" Let the room's own logic narrow toward the answer.\n3. Optional in-flight step — drop a borrowed frame. Used when the room can't see the shape on its own. An external story from outside the industry with the same structural shape. Don't argue. The story sits there and the shape becomes visible. Frames must feel weighty, not jovial. Apple lands. Funny anecdotes dissolve tension and let the room off the hook.\n4. Ask one small, concrete-sounding, tactical-feeling question that lands as the obvious next step. The smallness is the point. By the time it's asked, the strategic work is already done.\n\nThree design rules across the whole move\n1. Aim at the unlock person. If they catch it, the room follows. Don't try to convince twelve people.\n2. Refuse the binary. When pushback comes, separate the problem rather than rebut on its terms. \"Well that's a different problem isn't it.\" Two problems become visible where the room saw one.\n3. Add to their model, don't replace it. Use their language, their frames, their triangles. Sit your answer alongside what they already believe — complementary line, not competing one.\n\nWhen it fails\n- Borrowed frames pitched too abstract or too jovial don't land. Register has to feel weighty.\n- If the unlock person doesn't catch it first time, don't hammer. Disagree and commit.\n\nTWO UNDERLYING DISCIPLINES (separable from the move itself)\nThe borrowed frame step depends on two separately-learned skills:\n\n1. Library curation. Mark grazes outside his own industry deliberately — podcasts, magazines, life. Things stick when they distil a structural shape, not when they're memorable quotes. The library curates itself because of the pleasure he takes in compression and elegance. Competitors look backward at each other; he looks sideways.\n\n2. Deployment timing. Knowing when a frame from the library matches the structural shape in front of you, and when to drop it. This is pattern-matching speed in real time. The Apple frame popped up in the HR moment because the asymmetry — stifling many for the sake of few — matched.\n\nBoth are teachable, but separately. Curation is a daily habit. Deployment is a real-time skill.\n\nEngine underneath\nMark enjoys being clever. The move is craft, not technique. He distils naturally — can't help it.\n\nNEXT STEPS\n- Revisit the working title \"room-shift move\" before the pattern goes into the library proper.\n- Treat library curation and deployment timing as their own pattern entries when articulating Signal further.\n- Frame this for Backstage / Soundcheck: Backstage could surface the structural shape; Soundcheck could supply the diagnosis. The move itself, and especially the deployment step, stays human."
+  },
+  {
+    "id": "act-c63fcad2ffd40e54",
+    "timestamp": "2026-04-30T09:26:08.890Z",
+    "description": "Built and packaged asymmetry-spotter skill — the diagnostic half of the room-shift move, made repeatable. Surfaces cost / benefit asymmetries in any input (board packs, roadmaps, briefs, RFPs, customer research). First skill spawned from the Signal pattern library work (act-7743c1bef5b6503b).",
+    "category": "os-build",
+    "outputType": "skill",
+    "outputStatus": "published-pending-test",
+    "relatedCompany": null,
+    "notes": "Skill packaged as asymmetry-spotter.skill, ready for installation.\n\nWHAT IT DOES\n- Hunts for cost / benefit asymmetries using two background filters (design out, simple is clever)\n- Five variants documented: minority-vs-majority, undefendable capability vs moat, edge-case infrastructure, outcomes-without-inputs, outside-in vs inside-out\n- Output format: top 3 asymmetries with structural logic, probing question Mark could ask, optional borrowed frame candidate\n- Calibrated depth: quick scan / standard pass / deep diagnostic\n\nOPEN QUESTIONS TO RESOLVE THROUGH TESTING\n1. Are all five variants real, or did some get inferred without enough evidence (variants 4 and 5 specifically — outcomes-without-inputs and outside-in vs inside-out)\n2. Should the skill produce the probing question, or stop at the diagnosis and let Mark craft the question himself\n3. The \"unlock person\" suggestion at the end depends on meeting-prep having run first — may need removing if it produces bad outputs when context isn't there\n\nNEXT STEPS\n- Mark will test against a Network board pack\n- Iterate based on output quality\n- Build follow-on skills: shapes-library (curated external frames) and room-mapper (prep discipline) once asymmetry-spotter is solid\n\nPAIRING\n- Sits before meeting-prep, client-brief-reframing, centre-channel-proposals, diagnostic-report\n- All four downstream skills now have a sharper diagnostic input"
+  },
+  {
+    "id": "act-b1686a0417f53193",
+    "timestamp": "2026-04-30T09:31:46.099Z",
+    "description": "Backlog two follow-on skills spawned from the room-shift move articulation: shapes-library (curated external frames Mark deploys in rooms) and room-mapper (the prep discipline of mapping who believes what before walking in). Both are sequenced after asymmetry-spotter has been tested and iterated.",
+    "category": "os-build",
+    "outputType": "skill-backlog",
+    "outputStatus": "backlog",
+    "relatedCompany": null,
+    "notes": "FOLLOW-ON SKILLS BACKLOG\n\nBoth spawned from the room-shift move pattern (act-7743c1bef5b6503b). Sequenced after asymmetry-spotter (act-c63fcad2ffd40e54) has been tested and iterated.\n\n---\n\nSKILL 2: shapes-library\n\nPurpose: Curated structured library of external frames with the same structural shapes as common business problems. Externalises the borrowed frame step of the room-shift move so Mark can pull candidates rather than wait for one to surface by feel.\n\nStructure (proposed): Each entry has source, line, structural shape, tags, when used, outcome, register notes. Searchable by structural shape so a problem description returns matching frames.\n\nSeeded by: act-34661d4e1cbadd5e (Apple Regent St, five-a-side team, condom failure example, Obama adjacent note, sourcing channels).\n\nRisk: Externalising the library may kill the natural retrieval. Mitigation: library is a backup, not the primary route. Mark still hears things and they still stick. The library catches the ones that don't.\n\nBuild trigger: Once asymmetry-spotter is tested and either solid or clearly needs more shape variants, build this next.\n\n---\n\nSKILL 3: room-mapper\n\nPurpose: The prep discipline. Given attendees for an upcoming meeting, produce a map of what each person likely believes coming in, and a hypothesis on who the unlock person is. Pulls from Lounge MCP (connection notes, triggers, prior interactions), LinkedIn, prior meeting notes, anything in Granola.\n\nThis is the bit Mark said he does for every meeting — currently in his head and takes time. A skill that does the first pass would compress prep without removing the judgement.\n\nShould reference: Obama empathy practice (act-34661d4e1cbadd5e) as part of the discipline.\n\nPairs with: meeting-prep (the brief), asymmetry-spotter (the diagnosis), and the room-shift move itself. room-mapper produces the \"who is in the room and what do they believe\" input that the move depends on.\n\nBuild trigger: After Lounge MCP is more populated. Currently the connection records and triggers may be too sparse to feed this well. Worth waiting until there's more data to draw on.\n\n---\n\nSEQUENCING LOGIC\n\n1. asymmetry-spotter [BUILT, pending test] — broadest application, every client engagement\n2. shapes-library — value compounds with use, start small and grow\n3. room-mapper — most data-dependent, benefits from richer Lounge MCP data\n\nNone of these replace the move. The move stays human because step four — the small concrete question, asked at the right moment, in the unlock person's language — is judgement under conditions a model can't see. What these skills do is take the prep load off so Mark arrives in the room with more bandwidth for the moment itself."
+  },
+  {
+    "id": "act-1a0eab12df106d7a",
+    "timestamp": "2026-04-30T09:34:36.099Z",
+    "description": "Built and packaged tacit-skill-extraction skill — the meta-method underneath Signal pattern surfacing and the future Backstage product. Extracted from the 30 April session that articulated the room-shift move, where Mark wrote the original interview prompt and the actual method emerged from what worked plus the corrections made during the session.",
+    "category": "os-build",
+    "outputType": "skill",
+    "outputStatus": "published-pending-test",
+    "relatedCompany": null,
+    "notes": "META-METHOD CAPTURED\n\nSkill packaged as tacit-skill-extraction.skill, ready for installation.\n\nWHAT IT DOES\nRuns a forensic interview to surface a tacit operator skill that someone has but cannot articulate. Works for self-articulation (Mark on Mark, for Signal) and for client articulation (Mark on a client, for Backstage).\n\nCORE DISCIPLINE — FOUR RULES\n1. Refuse abstraction. Drift to principles → push back to a specific moment.\n2. Refuse pattern-matching by the subject. They will compare moments too early. Stop them and stay inside one.\n3. Refuse to lead. Don't suggest the answer. Don't name the pattern. The articulation must come out of their detail.\n4. Refuse the throwaway. The offhand comments often contain the engine.\n\nTHE METHOD — SEVEN STEPS\n1. Open with moments not questions (3-4 specific)\n2. Forensic unpack on the first moment (slow, microscopic)\n3. Repeat for two or three more (less depth, but still concrete; look for variance)\n4. Look across the moments (hypothesise out loud, attribute every component back to a specific moment)\n5. Test against a fresh moment (non-negotiable; otherwise you're over-fitted)\n6. Draft the articulation (Story / Pattern / Play + engine + underlying disciplines + naming note)\n7. Offer refinement (read it back, ask what's wrong)\n\nCALIBRATED LENGTH\n- Light (60-90 min): single skill, three moments\n- Standard (90-120 min): default, three to four moments with full forensic depth\n- Deep (multiple sessions): foundational skills, book chapters, senior hires\n\nWHY THIS MATTERS STRATEGICALLY\nThis is the engine under Backstage. When Backstage runs operator articulation sessions for clients, this is the skill that powers it. It also means every future Signal pattern can be surfaced using the same method, so the book and the consultancy both compound on this.\n\nPairs with: asymmetry-spotter (once articulated, the skill's diagnostic logic can be applied), Studio Log (all sessions log at least one signal-story entry).\n\nCROSS-REFERENCES\n- act-d66fafe83dc8884c — room-shift move pattern v1 (the case study this method was extracted from)\n- act-7743c1bef5b6503b — room-shift move pattern v2 (the canonical case study output)\n- act-34661d4e1cbadd5e — shapes-library seed entries (a follow-on the method spawned)\n- act-b1686a0417f53193 — skill backlog (more follow-ons the method spawned)\n- act-c63fcad2ffd40e54 — asymmetry-spotter (first skill spawned from the case study)\n\nNEXT STEPS\n- Test the skill on Mark's next self-articulation candidate (next time he notices \"I do this thing but I can't explain it\")\n- Test the skill in a Backstage-style session with a client\n- Iterate the four rules and seven steps based on what holds and what slips"
+  },
+  {
+    "id": "act-affc36b8d0bc0a57",
+    "timestamp": "2026-04-30T09:43:14.350Z",
+    "description": "Built and packaged forensic-interview skill — generalised version of the forensic discipline used to articulate the room-shift move. Sister skill to tacit-skill-extraction. Designed to be shared with the Network team and any other team that needs the discipline of refusing abstraction and getting clearer on something held loosely. Adapts output format to user's stated goal: idea / strategy / insight / brief / skill.",
+    "category": "os-build",
+    "outputType": "skill",
+    "outputStatus": "published-pending-test",
+    "relatedCompany": null,
+    "notes": "FORENSIC INTERVIEW SKILL\n\nSkill packaged as forensic-interview.skill, ready for installation. 168 lines.\n\nRELATIONSHIP TO TACIT-SKILL-EXTRACTION\nBoth skills share the same engine: four rules (refuse abstraction, refuse subject pattern-matching, refuse to lead, refuse the throwaway) and seven steps (open with moments, forensic unpack, repeat, compare, test, draft, refine).\n\nThe difference is what's being surfaced:\n- tacit-skill-extraction: a specific operator skill someone has but cannot articulate. Output: Story / Pattern / Play. Highly specialised. For Backstage and Signal work.\n- forensic-interview: anything else (idea, strategy, customer insight, decision, brief, hunch). Output: adapts to user's stated goal in step zero.\n\nDESIGN DECISIONS\n1. Generalised, not Network-specific. Reusable across any team Mark works with.\n2. Step zero asks the user what they want to walk away with, so the variant is selected by them not by Mark or by Claude.\n3. Five output variants documented: clearer idea, sharper strategy, surfaced insight, reframed brief, captured skill (latter points to tacit-skill-extraction).\n4. Closing note on discipline included so users know what they're signing up for: \"if the conversation feels comfortable, it's probably failing rule 3.\"\n\nHOW TO INVOKE EACH SKILL\n\nThe skills fire automatically based on phrasing. Different phrases trigger different skills.\n\nforensic-interview triggers on:\n- \"help me think this through\"\n- \"I've got an idea but can't pin it down\"\n- \"interview me on this\"\n- \"run a forensic on this\"\n- \"help me sharpen this brief / strategy / insight\"\n- \"I keep going in circles on this\"\n- \"I need to get clearer on...\"\n- \"interrogate this with me\"\n\ntacit-skill-extraction triggers on:\n- \"help me work out what I'm actually doing when [X]\"\n- \"I do this thing but can't explain it\"\n- \"let's articulate this skill\"\n- \"I want to capture this skill\"\n- \"I'm running a Backstage session\"\n- \"let's run a tacit skill extraction\"\n\nUSE CASES\n- Mark: forensic-interview when wrestling with a strategic idea or customer insight; tacit-skill-extraction when surfacing a Signal pattern or running a Backstage session\n- Network team: forensic-interview for product decisions, customer insight surfacing, brief sharpening, strategic clarity\n- Future Backstage clients: tacit-skill-extraction when articulating a senior operator's skill; forensic-interview when surfacing the strategic context around it\n\nCROSS-REFERENCES\n- act-7743c1bef5b6503b — room-shift move pattern (the case study the discipline was extracted from)\n- act-1a0eab12df106d7a — tacit-skill-extraction skill (the specialised sibling)\n\nNEXT STEPS\n- Share with Network team for testing\n- Mark to test both skills on his own work\n- Iterate based on what holds and what slips when others run them"
+  },
+  {
+    "id": "act-4a0a8f1418236170",
+    "timestamp": "2026-04-30T09:50:33.688Z",
+    "description": "Built and packaged team-skill-articulation skill — generalised version of tacit-skill-extraction for sharing with the Network team. Designed for surfacing operator skill inside teams: hiring, succession, training, promotion, capability mapping, knowledge documentation. Strips out Mark / Signal / Backstage / Studio Log references and reframes for an interviewer-and-subject context where they're typically different people.",
+    "category": "os-build",
+    "outputType": "skill",
+    "outputStatus": "published-pending-test",
+    "relatedCompany": null,
+    "notes": "TEAM SKILL ARTICULATION\n\nSkill packaged as team-skill-articulation.skill. 173 lines. Ready to share with Network team.\n\nWHAT CHANGED FROM TACIT-SKILL-EXTRACTION\n- Mark / Signal / Backstage references removed\n- Studio Log capture replaced with portable internal document format\n- Use cases reframed for internal team capability work: hiring, succession, training, promotion, capability mapping, documentation\n- Added explicit Roles section (interviewer + subject as different people)\n- Added Setting Expectations Up Front section — important when interviewing colleague rather than self\n- Added note on power dynamics (succession / capability mapping can feel evaluative; address up front)\n- Output format reoriented around how the document gets used (hiring brief, training material, succession handover, handbook entry)\n\nTHE FAMILY OF SKILLS NOW\nFor Mark:\n- tacit-skill-extraction (Mark's version, with Studio Log capture and Signal/Backstage context)\n- forensic-interview (broader sibling, for ideas / strategy / insights / briefs)\n- asymmetry-spotter (diagnostic, for documents)\n\nFor sharing externally:\n- forensic-interview (already generalised, ready to share)\n- team-skill-articulation (generalised tacit-skill-extraction, ready to share)\n\nUSE CASES FOR NETWORK\n- Articulating what their best ops manager actually does so it's hire-able / teachable\n- Capturing knowledge before someone leaves\n- Sharpening role descriptions when hiring senior operators\n- Surfacing what makes a star performer star\n- Mapping capability across the org\n- Turning instinct into curriculum for junior team development\n\nHOW IT GETS INVOKED\nTriggers on phrases like:\n- \"X is brilliant at this but we can't pin down why\"\n- \"We need to document what Y does before they leave\"\n- \"We keep hiring for this role and getting it wrong\"\n- \"Help me articulate what makes Z so effective\"\n- \"Let's surface what our best operator actually does\"\n- \"Turn this instinct into something teachable\"\n\nPAIRING\n- Pairs with forensic-interview when the team wants to articulate a strategy or insight rather than a person's skill\n- Often surfaces follow-on candidates (a senior operator's articulation reveals adjacent skills worth capturing)\n\nNEXT STEPS\n- Share both forensic-interview and team-skill-articulation with Network team\n- Suggest they pick a test case (a senior operator they want to understand better) and run it\n- Iterate based on feedback from real sessions\n\nCROSS-REFERENCES\n- act-1a0eab12df106d7a — tacit-skill-extraction (Mark's original)\n- act-affc36b8d0bc0a57 — forensic-interview (its generalised sibling)\n- act-7743c1bef5b6503b — room-shift move pattern (the case study the method was extracted from)"
+  },
+  {
+    "id": "act-74f4c1191fd27eb8",
+    "timestamp": "2026-04-30T11:32:58.521Z",
+    "description": "Shared forensic-interview and team-skill-articulation skills with Network team via Claude Team workspace and AI Slack channel. Skills uploaded by Mark, Slack message posted with usage instructions, trigger phrases, and ask to save / share outputs back. Part of the broader Network data, skills and agents strategy — Mark has gone first with two ready-made skills to set the pattern for the team to build their own.",
+    "category": "os-build",
+    "outputType": "deployment",
+    "outputStatus": "shipped",
+    "relatedCompany": null,
+    "notes": "NETWORK TEAM SKILLS HANDOVER — STATUS\n\nSkills shared in Network's Claude Team workspace:\n- forensic-interview (for ideas / strategy / insights / briefs)\n- team-skill-articulation (for surfacing operator skill in the team)\n\nSlack message posted in the AI channel with:\n- What each skill does\n- Trigger phrases to invoke them\n- Warning about productive friction (\"if it feels comfortable it's not working\")\n- Ask to save and share outputs back to team or org\n\nWATCH-FOR SIGNALS over next few weeks\n1. Who tries them first — these are the build cohort. Back them explicitly.\n2. What gets shared back — articulated skills, sharpened briefs, captured insights. If channel goes quiet on outputs, follow up with one or two early adopters to model \"save and share\" publicly.\n3. Whether anyone tries to build a skill themselves — this is the real signal. Production not consumption. First home-grown Network skill is a milestone worth marking.\n\nNEXT STRATEGIC STEPS\n- Flag skill-creator availability when timing feels right (after consumption is established but before momentum stalls)\n- Consider showing Network templates for their own equivalent libraries (customer behaviour patterns, product decision frames, operator skill catalogue) once Mark's own shapes-library and room-mapper are built\n- This is the first leg of the broader data / skills / agents strategy at Network\n\nCROSS-REFERENCES\n- act-affc36b8d0bc0a57 — forensic-interview build\n- act-4a0a8f1418236170 — team-skill-articulation build (the Network-tailored version)\n- act-1a0eab12df106d7a — tacit-skill-extraction (Mark's original, kept for Backstage / Signal)"
+  },
+  {
+    "id": "act-19b25156b9fffa83",
+    "timestamp": "2026-04-30T12:00:20.299Z",
+    "description": "Captured four new operating principles for Signal raw material file: Score it out of 10, What have you got to lose, Do it consciously, Time is not a constant. Each assessed for mechanism strength, chapter placement, and what's still needed before earning a place in the architecture.",
+    "category": "signal",
+    "outputType": "brief",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Two principles ready to develop next: \"What have you got to lose\" (strongest, needs walk-away story) and \"Score it out of 10\" (mechanism is sharp, needs evidence moment). The other two need sharpening — \"Do it consciously\" needs the kindness-trap angle pulled out; \"Time is not a constant\" needs the AI/value-capture angle developed. New file: signal-raw-material.md established as ongoing capture protocol.</notes>"
+  },
+  {
+    "id": "act-6c49425cd7cfa9b3",
+    "timestamp": "2026-05-02T16:52:56.584Z",
+    "description": "Studied Rumelt Advisory positioning (rumeltadvisory.com homepage and substack rebrand piece). Extracted four moves for Centre Channel surface: definition by exclusion, named sections doing positioning work, one biographical fact told with discipline, and the X-not-Y sentence pattern. Connected Rumelt's design-as-citation principle (rusty green from BCG 1967 Perspectives) to broader thinking about Centre Channel's visual heritage.",
+    "category": "signal",
+    "outputType": "brief",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Reference quote from Rumelt site: \"True strategy does not start with your goals; it begins with your reality.\" Mirrors Signal thesis structurally. Next move offered: draft parallel versions of Centre Channel homepage and About page applying the same discipline (every section a named header, every paragraph defines/refuses/proves). Awaiting Mark's go-ahead. Also worth pulling: Rumelt owns his epithet (\"strategy's strategist\") openly. Mark's \"Winston Wolf of digital commerce\" should stop being a private joke and start working publicly."
+  },
+  {
+    "id": "act-d6480c3fe05e6b8e",
+    "timestamp": "2026-05-02T17:06:48.967Z",
+    "description": "Reviewed Rumelt's Strategy Foundry page as a model for how to describe an engagement as defined IP rather than a flexible service. Identified four moves to apply to Centre Channel's engagements: naming the engagement (not just products), defining deliverables by negation, treating constraints as credibility filters, and qualifying buyers on the page itself.",
+    "category": "signal",
+    "outputType": "brief",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Mark likes the approach and wants to play around with it. Reading The Crux next, which will deepen this thinking. Concrete next move on hold: name and write a one-page spec for the £15k diagnostic engagement (separate from Soundcheck, which is the future automated version). Same exercise then for the fractional director engagement. Bigger principle to revisit: Signal book will do for Centre Channel what The Crux does for Rumelt — describe the method that the engagements deliver. Site structure should anticipate this even though Signal is a six-month horizon."
+  },
+  {
+    "id": "act-d34437603d080e9d",
+    "timestamp": "2026-05-02T17:10:57.306Z",
+    "description": "Reviewed Rumelt's Strategy Foundry page as a model for describing an engagement as defined IP rather than a flexible service. Four moves to apply: name the engagement, define deliverable by negation, use constraints as credibility, qualify the buyer on the page itself.",
+    "category": "signal",
+    "outputType": "brief",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Mark likes the approach. Reading The Crux next. Next move on hold: name and write one-page spec for the £15k diagnostic engagement, then the fractional director engagement. Bigger thread: Signal will do for Centre Channel what The Crux does for Rumelt."
+  },
+  {
+    "id": "act-662f53970af48a3e",
+    "timestamp": "2026-05-05T15:17:51.671Z",
+    "description": "Captured a Signal raw-material story from Network Digital NED work: the disillusionment cycle in AI-native teams. Excitement without clarity pulls capable people away from the disciplines that made them effective, stalls projects, and burns the most willing advocates.",
+    "category": "signal",
+    "outputType": "raw-material",
+    "outputStatus": "raw",
+    "relatedCompany": "Network Digital",
+    "notes": "Best fit Ch 5 (The Tools Lie) as the inverse example: tools-first failure catches the most willing adopters, not just the laggard board. Secondary candidates Ch 1 (Tactical Blindness, AI-enabled team variant) and Ch 6 (Vision First, AI Second) as a human proof point. Gap: needs one specific worked example — named workstream, the actual question Mark asked, the shift that followed. Also has Tier 1 article potential as a counterpart to Article 03."
+  },
+  {
+    "id": "act-de30b92072d0c07b",
+    "timestamp": "2026-05-06T14:42:40.260Z",
+    "description": "Identified a sixth video script for the talking head series: the disillusionment cycle in AI-native teams. Sibling to AI Reality Check — same theme, inverse facet (over-eager builders rather than the cynic board).",
+    "category": "content",
+    "outputType": "video-script-concept",
+    "outputStatus": "concept",
+    "relatedCompany": "Network Digital",
+    "notes": "Source story: Network Digital NED work — young AI-native colleagues losing momentum on pioneering projects because excitement has pulled them away from use-case definition, collaboration, bringing people along. Mark's job in the room is to wrap clarity around the work and re-anchor it. Question Ellie could ask: \"You've said boards struggle to get AI right. But what about the teams who are already excited about it?\" Pairs with AI Reality Check on the feed, posted a week or two apart. Open: hot take first vs straight to camera, and shared visual marker if the two are read as a pair. Calibration script still owed by Mark before drafting."
+  },
+  {
+    "id": "act-af80d5481a2c29de",
+    "timestamp": "2026-05-06T14:59:53.167Z",
+    "description": "Drafted V1 of all five talking head video scripts in Notion. Q&A format with Ellie asking off-camera. Each script anchored on a Signal story for personality and stakes (weather forecast, disillusionment cycle, Stripe migration, give analytics to finance, Backstage origin). Editing protocol set: Mark super-edits one as the voice template, then Claude reshapes the other four to match.",
+    "category": "content",
+    "outputType": "video-scripts",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Notion page URL: https://www.notion.so/3586aba1643881bfaf3edcbafa824255\n\nPage nested under \"Getting Started\" as parent (only stable workspace-level page available). Mark to move to Centre Channel hub once that exists.\n\nNext step: Mark super-edits one script. Whichever lands closest to his voice becomes the template. Then four rewrites to match.\n\nStories used:\n- V1: Didomi weather forecast + PayPal-that-nothing\n- V2: Disillusionment cycle (Network Digital, logged 5 May as raw material)\n- V3: Missguided Stripe migration (£1m/month) + User Conversion credibility\n- V4: Give analytics to finance, Missguided\n- V5: Backstage origin, Abbott Lyon\n\nFilming order locked: V2, V1, V4, V3, V5. Three takes per script. Single session for visual continuity.\n\nOutstanding: still need a Signal Pattern Library document in project knowledge so the stories don't keep getting re-surfaced through past chat search. Flagged but parked."
+  },
+  {
+    "id": "act-c38e7747f3479b34",
+    "timestamp": "2026-05-06T15:13:53.023Z",
+    "description": "Created camera, audio and lighting cheat sheet in Notion. Reference card for the talking head shoots covering camera settings (with APS-C focal length note), DJI Mic Mini levels, three-light setup (Zhiyun key, Neewer bounce, RGB hair light, warm background), framing, wardrobe, pre-flight checklist, and watchouts. Sits alongside the V1 scripts page.",
+    "category": "content",
+    "outputType": "cheat-sheet",
+    "outputStatus": "complete",
+    "relatedCompany": null,
+    "notes": "Notion URL: https://www.notion.so/3586aba16438810fb307ddfcb1910ee8\n\nCritical APS-C clarification captured: kit lens at 33mm = 50mm full-frame equivalent thanks to 1.5x crop factor. This was the correction made earlier in the session (initial advice said 35mm). Cheat sheet now treats 33mm as the locked default and notes that the future Sigma 30mm f/1.4 DC DN upgrade gives 45mm equivalent so framing stays consistent.\n\nBoth Notion pages (scripts and cheat sheet) currently nested under \"Getting Started\" as the only stable parent. Mark to move both to a Centre Channel hub once that exists in the workspace."
+  },
+  {
+    "id": "act-be2560be54d00a7f",
+    "timestamp": "2026-05-07T09:37:03.771Z",
+    "description": "Worked through Signal Founding Partner / Soundcheck pilot programme as a reframe of pro bono work. Developed shortlist of ten target brands across beauty, fashion and homewares (Trinny London, Beauty Pie, Wild, ME+EM, Castore, Astrid & Miyu, Holland Cooper, Soho Home, Neptune, Cox & Cox) with intro pathways through Brainlabs, Apadmi, Network Digital and Sessions network.",
+    "category": "pipeline",
+    "outputType": "brief",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Discussed Maebe as potential target via recruiter intro. Concluded not a fit: revenue band below ICP, founder-funded with no PE board (wrong audience for Signal), drop-based commerce model. Reframed as recruiter coffee for broader fashion network access plus 12-month watchlist entry. Two draft messages produced. Outstanding follow-ups: overlay Lounge connections on the ten-brand shortlist; consider Founding Partner offer document; reactivate Olivia's and Lights4Fun with the new framing."
+  },
+  {
+    "id": "act-0e73c7ac5b4ed8ef",
+    "timestamp": "2026-05-14T12:20:51.932Z",
+    "description": "Built the Signal content repository in Notion. One parent page (Signal) with six databases (Chapters, Story & Pattern Library, Raw Material, Evidence Base, Open Decisions, Reading & Reference Shelf) and two sub-pages (Method & Core Argument, Publishing Plan). Populated from project knowledge, six relevant past chats, and 16 Studio Log entries.",
+    "category": "signal",
+    "outputType": "repository",
+    "outputStatus": "complete",
+    "relatedCompany": null,
+    "notes": "Content populated:\n- Chapters: 11 records covering Introduction, Parts 1-3, Conclusion. All with status, evidence assignments, draft status, and migration notes.\n- Story & Pattern Library: 12 stories across Missguided, User Conversion, Abbott Lyon, Network Digital, Anonymous, Multiple. Each with story/pattern/play structure where developed.\n- Raw Material: 7 principles and ideas not yet placed (Score it out of 10, What have you got to lose, Do it consciously, Time is not a constant, Translated not transplanted, The diagnosis is almost never where everyone is looking, Stopped compromising and started strategising).\n- Evidence Base: 13 records including 3 explicit gaps (anonymised D2C example, Network Digital worked example, vision-first success from outside eCommerce).\n- Open Decisions: 9 records, 2 settled (method name, three channels), 1 parked (subtitle), 6 open (Tactical Blindness placement, Replatforming Loop placement, Style chapter/close, hero sentence, room-shift move naming, Borton lineage acknowledgment).\n- Reading & Reference Shelf: 19 records across lineage, adjacent structures, strategic counsel set, to-avoid, comparable books.\n\nParent page URL: https://www.notion.so/3606aba164388151b269f6276ee565a8\n\nNext moves possible: (1) write actual chapter draft pages inside each Chapter record, (2) link the Story records to Chapter records via Notion relations, (3) build a Calendar/Timeline view across Open Decisions and Evidence gaps. Will only do these if Mark asks.\n\nCosmetic note: had to redo the Chapters Part select options because middot characters got stored as literal escape codes (\\\\u00b7) on first create. Resolved by altering the column and reassigning Part values across 9 chapter pages."
+  },
+  {
+    "id": "act-16c37bd04d1ddc4a",
+    "timestamp": "2026-05-14T12:26:46.795Z",
+    "description": "Captured Signal positioning refinement as a companion note to signal-core-argument.md. The core line (\"The brands winning with AI didn't start with AI. They started with clarity\") holds, but now sits as the opening half of a two-halves argument. Second half: clarity is what makes AI an unlock; without it AI just makes existing confusion faster. Reframes the book from \"AI strategy\" (crowded, dating fast) to \"the clarity that makes AI an unlock\" (distinctive, durable). Resolves tension between Signal-as-method work and the AI argument by framing method as cause, AI as effect.",
+    "category": "signal",
+    "outputType": "positioning-note",
+    "outputStatus": "complete",
+    "relatedCompany": null,
+    "notes": "Output file: signal-positioning.md (in /mnt/user-data/outputs/, to be saved to project knowledge)\n\nPortable sentence captured: \"Signal is not a book about AI. It's a book about the clarity that makes AI an unlock for those who build it, and a faster failure mode for those who don't.\"\n\nWhat stays: central line, chapter architecture, evidence base, reader profile, hardback format.\nWhat changes: the throughline woven between chapters. AI doesn't disappear; it becomes the answer to \"why now.\"\n\nTriggered by Mark questioning whether the original core line still held. His instinct: the book had ventured into method, but AI is still the unlock to bring it back to. Confirmed yes, with refinement."
+  },
+  {
+    "id": "act-fff1cd62e381cb0c",
+    "timestamp": "2026-05-14T13:02:49.655Z",
+    "description": "Reframed Signal's central argument from AI-first to method-first across the Notion repository. Signal is now positioned as the durable method for finding what matters in any environment, with AI as the most urgent current application rather than the subject. The \"brands winning with AI started with clarity\" line survives, now landing as a destination rather than the thesis.",
+    "category": "signal",
+    "outputType": "repository-update",
+    "outputStatus": "complete",
+    "relatedCompany": null,
+    "notes": "Three pages updated:\n1. Signal parent page \\u2014 central argument rewritten, \"three questions\" section consolidated into central argument\n2. Method & Core Argument sub-page \\u2014 central argument rewritten with the \"faster, smarter, with more style\" close repositioned; new \"Positioning compass\" section added at end (\"Be the hardware, not the software\" \\u2014 Mark's line, internal compass only)\n3. Two chapter descriptions tweaked (Introduction and Ch 6 Vision First)\n\nKey reframe: Signal is the durable layer. AI is the current trend that runs on it. Future trends will run on it too. This dates better than \"clarity before AI\" as the spine and explains why Mark's evidence base goes back twenty years to Missguided.\n\nMark's hardware/software analogy held back from the public copy by agreement \\u2014 lives only in the Positioning compass note as internal discipline. Reasoning: Apple analogies in business writing read as derivative by default, and the metaphor is doing private work for Mark's commercial positioning (when an AI consultant invitation comes up, stay underneath it).\n\nThe Conclusion record on Chapters still does the agentic commerce close. Mark confirmed it earns its place."
+  },
+  {
+    "id": "act-42b3327a58551a0f",
+    "timestamp": "2026-05-18T09:22:52.643Z",
+    "description": "Built the \"Cost of setting up shop\" chart figure for Signal, applying Benedict Evans's cost-collapse frame from his Autumn 2025 deck to UK ecommerce. SVG and 2400px PNG saved in Centre Channel design system, ready for typesetting.",
+    "category": "signal",
+    "outputType": "chapter-figure",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Seeded the Signal Notion repository with five entries: two principles in Raw Material (the cost-collapse-moves-the-moat pattern, and Evans's seven diagnostic questions), two Held entries in Evidence Base (Shopify cost-collapse data and the barcode parallel), and the Shopify moat collapse pattern in the Story Library with parked copy ready for chapter use. Open thread: operationalise the seven Evans questions into a Backstage diagnostic intake. Sits underneath Soundcheck as a lighter cost-collapse audit. Mark flagged interest — needs a follow-up session to spec."
+  },
+  {
+    "id": "act-30550fbcf4bfb6b7",
+    "timestamp": "2026-05-18T09:59:01.971Z",
+    "description": "Drafted Signal bridge passage \"The cost of the question\" (~870 words). Owns the exploratory nature of the cost-collapse chart, pivots into \"how much should I spend on ecommerce tech\" board question, and reframes via three diagnostic questions about where the moat actually sits.",
+    "category": "signal",
+    "outputType": "chapter-draft",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Placement: Part One closer between Chapter 3 and Chapter 4. Hands off to Replatforming Loop chapter title language. Single Forrester anchor (2012 Demandware TCO study via Vervaunt) plus Flexera 8.2% and Avasant/Gartner context. Three flags noted: Forrester original citation, Flexera latest year, Avasant paywalled retail specifics. Two Mark-to-decide flags: question formatting and placement. Sets up Backstage/Soundcheck diagnostic naturally without naming them in this passage. Saved to outputs as signal-bridge-the-cost-of-the-question.md."
+  },
+  {
+    "id": "act-089eeecc770574f7",
+    "timestamp": "2026-05-18T10:17:02.459Z",
+    "description": "Drafted LinkedIn hot-take \"The cost of the question\" (~260 words). Teases the Signal cost-collapse argument: tech spend hasn't fallen even though the cost of building an ecommerce shop dropped 200x since 1999. Ends with \"Clarity comes first. The number comes second.\"",
+    "category": "content",
+    "outputType": "hot-take",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Pair with the cost-of-setting-up-shop chart (cream + brass) as the visual hook. Hook is the 1999/2024 contrast in the first two lines. One piece of wit (\"integrates what is already integrated\"). Soft Signal book plant at the end. Three alternative endings offered in the file. Natural follow-up post is the Backstage diagnostic question set (Evans-derived seven questions) to keep building the moat audit story while methods section is drafted."
+  },
+  {
+    "id": "act-0ab6ba4314ef5cbd",
+    "timestamp": "2026-05-18T10:38:40.875Z",
+    "description": "Drafted Monday's LinkedIn post for the tech-spend flurry: \"The budget meeting\" (146 words). £300k tech approved without question, £300 survey software cut after thirty minutes of debate. Lands on \"expensive is a proxy for legitimacy. It shouldn't be.\" Plus full flurry plan for Mon-Thu covering ongoing spend, launch costs, the photography analogy, and the wrong-question synthesis.",
+    "category": "content",
+    "outputType": "linkedin-flurry",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Daily cadence Mon-Thu, all four posts under 200 words. Monday ready to post, Tuesday-Thursday sketched with opening lines and direction. Saved as linkedin-flurry-tech-spend.md in outputs. Each post in the flurry advances one angle of the same argument so by Thursday the audience nods at the reframe before they get to it. Soft Signal book plant lands on Thursday only."
+  },
+  {
+    "id": "act-e77bc88a6d13c9d8",
+    "timestamp": "2026-05-18T10:48:09.620Z",
+    "description": "Generated three branded LinkedIn social cards for the tech-spend flurry. Monday dark \"Expensive is a proxy for legitimacy\", Wednesday light \"Everyone has a camera. Almost no one is a photographer\", Thursday dark \"Stop asking how much. Start asking what for.\" Tuesday uses the cost-collapse chart.",
+    "category": "content",
+    "outputType": "linkedin-images",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Cards rendered at 1200x627 using the linkedin-post-images skill. Centre Channel design system. Visual rhythm: dark, cream chart, light, dark. Thursday headline revised once after first attempt wrapped awkwardly."
+  },
+  {
+    "id": "act-2fc8f1ca2bac7f70",
+    "timestamp": "2026-05-18T11:09:15.547Z",
+    "description": "Revised Monday's LinkedIn post for the tech-spend flurry. Dialled up from the first draft: assertion-first opening, \"most boards\" replaced with first-person plus \"the room\" as the unit, sharper close (\"confused price for proof\"). 168 words. Pairs with the existing dark card.",
+    "category": "content",
+    "outputType": "hot-take",
+    "outputStatus": "ready-to-post",
+    "relatedCompany": null,
+    "notes": "Three craft moves applied: (1) story now serves as evidence rather than lead, (2) \"I realised\" memoir framing dropped for direct assertion, (3) \"Most boards\" generalisation removed — voice now consistent first-person operator throughout. Card pulls \"Expensive is a proxy for legitimacy\" as setup; post closes on \"confused price for proof\" as verdict. Cards-as-setup, posts-as-payoff principle holding for the week."
+  },
+  {
+    "id": "act-c4e54f7ca9d901f9",
+    "timestamp": "2026-05-18T11:13:06.820Z",
+    "description": "Created LinkedIn Posts tracker database in Notion under Publishing Plan. 17-property schema covering content (title, copy, type, series, theme, hook type, visual, word count), publishing (status, posted date, URL, image) and engagement (impressions, reactions, comments, reposts, notes). Seeded with the four Tech Spend Flurry posts.",
+    "category": "os-build",
+    "outputType": "notion-database",
+    "outputStatus": "live",
+    "relatedCompany": null,
+    "notes": "Data source ID: c59e9405-a3bc-483f-a585-e4c3600a9e0b. URL: notion.so/f379cb196950427b9a711661b75c812e. Designed as the persistent home for ALL Mark's LinkedIn posts, not just this flurry — Type and Series fields let standalone posts, hot takes, articles, and article teasers all live alongside. Hook Type and Visual fields enable performance slicing once data accumulates (e.g. do story hooks outperform statistic hooks, do dark cards outperform light). Status options default to Notion's Not started/In progress/Done — Mark may want to add Scheduled and Posted via the UI. Images need to be attached manually since the Notion API can't upload local files."
+  },
+  {
+    "id": "act-f9d9bf11529b4933",
+    "timestamp": "2026-05-18T11:18:58.135Z",
+    "description": "Refined the pivot line in Monday's tech-spend post. \"Expensive is a proxy for legitimacy\" becomes \"Expensive is a signal of importance.\" Sharper because \"importance\" names the actual cognitive substitution happening in the room. Bonus: \"signal\" subtly seeds the book.",
+    "category": "content",
+    "outputType": "copy-revision",
+    "outputStatus": "decided",
+    "relatedCompany": null,
+    "notes": "Three artefacts pending update: (1) Monday LinkedIn card needs rebuilding with new headline \"Expensive is a signal of *importance.*\" (brass on \"importance\"); (2) Notion LinkedIn Posts row \"The budget meeting\" needs Post Copy field updated; (3) flurry markdown file linkedin-flurry-tech-spend.md in /mnt/user-data/outputs/ needs the middle paragraph swapped. Considered \"proxy for proof\" as a tighter alternative (would echo the close \"confused price for proof\") but Mark chose B for plainness and the quiet book callback. Tradeoff accepted: lose the proof-proof rhetorical hammer; gain a sharper standalone line."
+  },
+  {
+    "id": "act-d13c93beca182287",
+    "timestamp": "2026-05-19T09:11:49.331Z",
+    "description": "Revised Tuesday's tech-spend flurry post for accessibility. Stripped the \"most-told story / most misunderstood\" rhetorical structure, removed the cryptic \"what is now hard\" close, replaced \"moat moves\" with plainer \"the shop used to make the difference.\" 105 words. Also specced a simpler chart rebuild: 2006-2024 timeline, minimal y-axis, drop era labels, single Shopify marker.",
+    "category": "content",
+    "outputType": "hot-take",
+    "outputStatus": "ready-to-post",
+    "relatedCompany": null,
+    "notes": "Three pretentiousness patterns Mark wants to avoid going forward: (1) the \"X is the most Y, and also the most Z\" rhetorical opener, (2) unit-of-measure precision like \"by a factor of two hundred\" instead of \"two hundred times cheaper,\" (3) elliptical endings that make the reader work for the meaning (works in book, dies on social). Chart rebuild queued for next session — needs bash and image rendering tools which aren't available this turn."
+  },
+  {
+    "id": "act-f1603a4b113685d8",
+    "timestamp": "2026-05-19T09:46:15.207Z",
+    "description": "Closed out the three outstanding jobs on the tech-spend flurry: rebuilt the cost-collapse chart (2006-2024, single Shopify marker, three-tick log-scale y-axis, cream + brass at 1200x627), updated both Notion LinkedIn Posts rows (Monday line swap to \"Expensive is a signal of importance\"; Tuesday full new copy verbatim), and synced the flurry markdown file.",
+    "category": "content",
+    "outputType": "hot-take",
+    "outputStatus": null,
+    "relatedCompany": null,
+    "notes": "Files in /mnt/user-data/outputs: cost-of-setting-up-shop.svg, cost-of-setting-up-shop.png, linkedin-flurry-tech-spend.md. Notion page IDs touched: 3646aba1-6438-810d-84c4-d32920e913a1 (cost-collapse chart) and 3646aba1-6438-8166-830e-e412a7fbab35 (budget meeting). Flagged one ambiguity to Mark: his brief quoted Monday's existing line as \"Expensive is a proxy for legitimacy. It shouldn't be.\" but the actual Notion copy reads \"Expensive is a proxy for legitimacy. It is also the most expensive habit in eCommerce.\" Went with the past-session locked decision — swap only the first sentence, keep \"It is also the most expensive habit in eCommerce.\" intact. Next move: draft Wednesday's photography post (cheap doesn't mean easy / camera analogy).</notes>\n<parameter name=\"outputStatus\">ready-to-post"
+  },
+  {
+    "id": "act-981a8e19b8edcb06",
+    "timestamp": "2026-05-21T12:58:35.309Z",
+    "description": "Built HTML mockup of \"Work With Mark\" page in Centre Channel dark design system. Modelled on Alex M H Smith's \"Work With Alex\" structure but in Mark's voice and method-led framing.",
+    "category": "content",
+    "outputType": "page-mockup",
+    "outputStatus": "draft",
+    "relatedCompany": null,
+    "notes": "Three doors: Diagnostic, Fractional Director, Board Briefings. Headline \"30 days from knowing exactly where the trade is\" still pending decision. Five open decisions logged in prior message: headline language, third door choice, naming clash with Sessions, work-on list format (8 items vs 3 frames), opening line frame (process-first vs brand-first)."
+  },
+  {
+    "id": "act-e4c770ab23d5b7ef",
+    "timestamp": "2026-05-27T13:22:39.690Z",
+    "description": "Evolved Work With Mark page mockup: replaced eight category labels with story-opening prompts in Mark's voice, added video placeholder section, added editorial pull quote and trusted-by proof layer.",
+    "category": "content",
+    "outputType": "page-mockup",
+    "outputStatus": "draft-v2",
+    "relatedCompany": null,
+    "notes": "Story openings now read as provocations not service menu (e.g. \"the bit that's not in the brief\", \"the trade hiding in plain sight\"). Video slot positioned between hero and thesis as a \"two minutes from Mark\" moment. Proof section uses single board-director pull quote plus wordmark row (ARNE, Lakeland, Abbott Lyon, Missguided, Selfridges, Ann Summers). Page is shaping up to replace both /how-i-work and /services as a single front door, with each Door potentially getting its own detail page."
+  }
+]
